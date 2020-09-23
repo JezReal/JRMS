@@ -386,7 +386,9 @@ public class EditRecordsPageController implements Initializable {
         else{
             try {
             connection = condb.getConnection();
-            String sql = "DELETE  FROM product_records WHERE productID = '" + num + "'";
+            String sql = "UPDATE product_records SET status='unavailable' WHERE productID='"+num+"'";
+            //"DELETE  FROM product_records WHERE productID = '" + num + "'"
+            //"UPDATE product_records SET status='removed' WHERE productID='"+num+"'"
             PreparedStatement prep = connection.prepareStatement(sql);
             prep.execute();
             connection.close();
@@ -422,15 +424,16 @@ public class EditRecordsPageController implements Initializable {
             
             try {
             connection = condb.getConnection();
-            String sql = "DELETE  FROM employees_record WHERE employeeID = '"+id+"'";
+            String sql = "UPDATE employees_record SET status='unemployed' WHERE employeeID = '"+id+"'";
             PreparedStatement prep = connection.prepareStatement(sql);
             prep.execute();
         } catch (Exception e) {
-            unsuccessfull("Error", "The employee was not deleted successfully");
+            unsuccessfull("Error", "The employee was not removed successfully");
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         
-        successful("Success!", "The employee was deleted successfully.");
+        successful("Success!", "The employee was removed successfully.");
         updateEmloyeeRecordsTable();
         clearFields();
         enableSaving();
@@ -508,7 +511,7 @@ public class EditRecordsPageController implements Initializable {
             productInfoTable.getItems().add(product);
 
             connection = condb.getConnection();
-            String sql = "INSERT INTO product_records VALUES('" + product.getProductID() + "','" + product.getProductName() + "','" + product.getProductPrice() + "')";
+            String sql = "INSERT INTO product_records VALUES('" + product.getProductID() + "','" + product.getProductName() + "','" + product.getProductPrice() + "','available')";
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
             
@@ -545,7 +548,7 @@ public class EditRecordsPageController implements Initializable {
             employeeInfoTable.getItems().add(employee);
 
             connection = condb.getConnection();
-            String sql = "INSERT INTO employees_record VALUES('" + employee.getEmpNum() + "','" + employee.getEmpLname() + "','" + employee.getEmpFname() + "','" + employee.getEmpMname() + "','" + employee.getEmpMobile() + "','" + employee.getEmpEmail() + "')";
+            String sql = "INSERT INTO employees_record VALUES('" + employee.getEmpNum() + "','" + employee.getEmpLname() + "','" + employee.getEmpFname() + "','" + employee.getEmpMname() + "','" + employee.getEmpMobile() + "','" + employee.getEmpEmail() + "','employed')";
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (Exception e) {
@@ -697,7 +700,7 @@ public class EditRecordsPageController implements Initializable {
 
         try {
             Connection connection = condb.getConnection();
-            ResultSet rs2 = connection.createStatement().executeQuery("select * from employees_record");
+            ResultSet rs2 = connection.createStatement().executeQuery("select * from employees_record WHERE status='employed'");
 
             while (rs2.next()) {
                 employee.add(new Employee_Records(rs2.getInt("employeeID"), rs2.getString("empLname"), rs2.getString("empFname"), rs2.getString("empMname"), rs2.getString("empMobile"), rs2.getString("empEmail")));
@@ -721,7 +724,7 @@ public class EditRecordsPageController implements Initializable {
 
         try {
             connection = condb.getConnection();
-            ResultSet rs3 = connection.createStatement().executeQuery("select * from product_records");
+            ResultSet rs3 = connection.createStatement().executeQuery("select * from product_records WHERE status='available'");
 
             while (rs3.next()) {
 
