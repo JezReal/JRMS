@@ -17,7 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Order_Summary;
-import utils.ObservableListManager;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -26,8 +26,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Formatter;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class HomeController implements Initializable {
@@ -177,10 +175,6 @@ public class HomeController implements Initializable {
 
     ResultSet rs, rs2;
 
-    ObservableListManager pendingListManager;
-    ObservableListManager forClaimListManager;
-    
-    
     @FXML
     void markButtonClicked(ActionEvent event) {
         
@@ -343,9 +337,6 @@ public class HomeController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        pendingListManager = new ObservableListManager(pending);
-        forClaimListManager = new ObservableListManager(forClaim);
 
         populateTables(pending, forClaim); 
     }

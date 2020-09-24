@@ -1,30 +1,24 @@
 package controllers;
 
 import connection.ConnectionClass;
-import java.net.URL;
-import java.util.ResourceBundle;
-import models.Employee_Records;
-import models.Products_Record;
-import models.userAccounts;
-import models.Notifications;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
-import javafx.collections.*;
-import java.sql.*;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import models.Employee_Records;
+import models.Notifications;
+import models.Products_Record;
+import models.userAccounts;
+
+import java.net.URL;
+import java.sql.*;
+import java.util.ResourceBundle;
 
 public class EditRecordsPageController implements Initializable {
 
@@ -630,10 +624,6 @@ public class EditRecordsPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-//    System.out.println(getAdmin());
-        
-        
 
         try {
             condb= new ConnectionClass();
