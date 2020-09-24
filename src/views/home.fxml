@@ -12,28 +12,30 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="1500.0" styleClass="mainFxmlClass" stylesheets="@../stylesheets/home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="669.0" prefWidth="150.0" spacing="20.0" style="-fx-background-color: #424242;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="154.0" spacing="30.0" style="-fx-background-color: #424242;" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="50.0" prefWidth="170.0">
+            <VBox alignment="CENTER" prefHeight="70.0" prefWidth="142.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="JRMS">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Text>
+                  <ImageView fitHeight="50.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/LOGO%20big.png" />
+                     </image>
+                  </ImageView>
                </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
             </VBox>
             <Button fx:id="orderButton" mnemonicParsing="false" onAction="#orderButtonClicked" prefHeight="100.0" prefWidth="100.0" styleClass="mainButtons">
                <graphic>
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="icons">
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="icons">
                            <image>
-                              <Image url="@../assets/order.png" />
+                              <Image url="@../assets/02.png" />
                            </image>
                         </ImageView>
                         <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="ORDER">
@@ -45,7 +47,7 @@
                   </VBox>
                </graphic>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="20.0" />
                </VBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -55,7 +57,7 @@
                <graphic>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="icons">
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="icons">
                            <image>
                               <Image url="@../assets/claim.png" />
                            </image>
@@ -79,9 +81,9 @@
                <graphic>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="icons">
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="icons">
                            <image>
-                              <Image url="@../assets/Files-Edit-File-icon.png" />
+                              <Image url="@../assets/03.png" />
                            </image>
                         </ImageView>
                         <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="RECORDS">
@@ -110,17 +112,20 @@
          <top>
             <VBox prefHeight="94.0" prefWidth="830.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="830.0" spacing="20.0" style="-fx-background-color: #29b6f6;">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="1339.0" spacing="10.0" style="-fx-background-color: #29b6f6;">
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/6824367_preview.png" />
+                              <Image url="@../assets/user%202.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="activeUserLabel" style="-fx-text-fill: white;" text="Mark Jason Margallo" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
                         </Label>
                         <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClicked" style="-fx-background-color: white; -fx-font-weight: bold; -fx-text-fill: #424242;" text="Logout">
                            <HBox.margin>
