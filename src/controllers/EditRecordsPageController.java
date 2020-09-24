@@ -18,6 +18,8 @@ import models.userAccounts;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class EditRecordsPageController implements Initializable {
@@ -28,6 +30,9 @@ public class EditRecordsPageController implements Initializable {
     ObservableList<TextField> employeeFields, userFields, productFields;
     
     HomeController controller;
+
+    ObservableList<String> employeeRecordsFilter, userAccountsRecordsFilter, productsRecordsFilter, selectedFilter;
+    ArrayList<String> employeeRecordsColumns, userAccountsRecordsColumns, productsRecordsColumns;
     
     private boolean admin;
 
@@ -556,19 +561,10 @@ public class EditRecordsPageController implements Initializable {
         setDefaults();
             
         }
-       
-            
-            
-        
-
-        
     }
 
     @FXML
     void userAccountsSaveButtonClicked(ActionEvent event) {
-        
-        
-        
         if (!validateFields()) {
             defaultLabels();
             incompleteFields(); 
@@ -629,8 +625,8 @@ public class EditRecordsPageController implements Initializable {
             condb= new ConnectionClass();
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } 
-        
+        }
+
         setDefaults();
         fillObservablelist();
         changeTabs();
@@ -642,7 +638,6 @@ public class EditRecordsPageController implements Initializable {
         userAccountSelectEmployeeComboBox.getSelectionModel().select(0);
         fetchSelectedItemDetails();
         populateSearchForCombobox();
-
     }
 
     //Method that updates the tables from database
@@ -779,7 +774,8 @@ public class EditRecordsPageController implements Initializable {
           myTabPane.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Tab> ov, Tab t, Tab t1) -> {
               
               if(t1.equals(productsRecordsTab) ){
-                  searchByCombobox.setItems(productItems);
+                searchByCombobox.setItems(productsRecordsFilter);
+//                  searchByCombobox.setItems(productItems);
                   searchByCombobox.getSelectionModel().select(0);
                   setDefaults();
                   updateEmloyeeRecordsTable();
@@ -787,14 +783,16 @@ public class EditRecordsPageController implements Initializable {
                   populateEmpIdChoiceBox();
               }
               else if(t1.equals(userAccountsRecordsTab)){
-                  searchByCombobox.setItems(userItems);
+                  searchByCombobox.setItems(userAccountsRecordsFilter);
+//                  searchByCombobox.setItems(userItems);
                   searchByCombobox.getSelectionModel().select(0);
                   setDefaults();
                   updateEmloyeeRecordsTable();
                   updateProductsRecord();
               }
               else if(t1.equals(employeeRecordsTab)){
-                  searchByCombobox.setItems(employeeItems);
+                  searchByCombobox.setItems(employeeRecordsFilter);
+//                  searchByCombobox.setItems(employeeItems);
                   searchByCombobox.getSelectionModel().select(0);
                   setDefaults();
                   updateProductsRecord();
@@ -809,50 +807,63 @@ public class EditRecordsPageController implements Initializable {
     private void populateSearchForCombobox() {
         
         if(employeeRecordsTab.isSelected()){
-            searchByCombobox.setItems(employeeItems);
+//            searchByCombobox.setItems(employeeItems);
+            searchByCombobox.setItems(employeeRecordsFilter);
             searchByCombobox.getSelectionModel().select(0);
         }
         else if(userAccountsRecordsTab.isSelected()){
-            searchByCombobox.setItems(userItems);
+//            searchByCombobox.setItems(userItems);
+            searchByCombobox.setItems(userAccountsRecordsFilter);
             searchByCombobox.getSelectionModel().select(0);
         }
         else if(productsRecordsTab.isSelected()){
-            searchByCombobox.setItems(productItems);
+//            searchByCombobox.setItems(productItems);
+            searchByCombobox.setItems(productsRecordsFilter);
             searchByCombobox.getSelectionModel().select(0);
         }          
     }
 
     private void fillObservablelist() {
-                
-        employeeItems =FXCollections.observableArrayList();
-        userItems=FXCollections.observableArrayList();
-        productItems=FXCollections.observableArrayList();
-        
-        employeeFields = FXCollections.observableArrayList();
-        userFields = FXCollections.observableArrayList();
-        productFields = FXCollections.observableArrayList();
-        
-        employeeFields.addAll(employeeLastnameField, employeeFirstnameField, employeeMiddlenameField, employeeMobileField, employeeEmailField);
-        userFields.addAll(userAccountsFirstnameField, userAccountsLastnameField, userAccountsUsernameField, userAccountsPasswordField);
-        productFields.addAll(productsRecordsNameField,  productsRecordsPriceField);
-        
-        try {
-            connection=condb.getConnection();
-            ResultSet rs1=connection.createStatement().executeQuery("SELECT column_name AS items FROM information_schema.columns WHERE table_name = 'employees_record' AND table_schema = 'final_project'");
-            ResultSet rs2=connection.createStatement().executeQuery("SELECT column_name AS items FROM information_schema.columns WHERE table_name = 'useraccounts_records' AND table_schema = 'final_project'");
-            ResultSet rs3=connection.createStatement().executeQuery("SELECT column_name AS items FROM information_schema.columns WHERE table_name = 'product_records' AND table_schema = 'final_project'");
-            while(rs1.next()){
-                employeeItems.add(rs1.getString("items"));
-            }
-            while(rs2.next()){
-                userItems.add(rs2.getString("items"));
-            }
-            while(rs3.next()){
-                productItems.add(rs3.getString("items"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        selectedFilter = FXCollections.observableArrayList();
+        employeeRecordsFilter = FXCollections.observableArrayList("ID", "Last Name", "First Name", "Middle Name", "Mobile Number", "Email", "Status");
+        userAccountsRecordsFilter = FXCollections.observableArrayList("User ID", "Username", "Status");
+        productsRecordsFilter = FXCollections.observableArrayList("ID", "Product Name", "Status");
+
+        employeeRecordsColumns = new ArrayList<>(Arrays.asList("employeeID", "empLname", "empFname", "empMname", "empMobile", "empEmail", "status"));
+        userAccountsRecordsColumns = new ArrayList<>(Arrays.asList("userID", "username", "status"));
+        productsRecordsColumns = new ArrayList<>(Arrays.asList("productID", "productName", "status"));
+//
+//        searchByCombobox.setItems(employeeRecordsFilter);
+
+//        employeeItems =FXCollections.observableArrayList();
+//        userItems=FXCollections.observableArrayList();
+//        productItems=FXCollections.observableArrayList();
+//
+//        employeeFields = FXCollections.observableArrayList();
+//        userFields = FXCollections.observableArrayList();
+//        productFields = FXCollections.observableArrayList();
+//
+//        employeeFields.addAll(employeeLastnameField, employeeFirstnameField, employeeMiddlenameField, employeeMobileField, employeeEmailField);
+//        userFields.addAll(userAccountsFirstnameField, userAccountsLastnameField, userAccountsUsernameField, userAccountsPasswordField);
+//        productFields.addAll(productsRecordsNameField,  productsRecordsPriceField);
+//
+//        try {
+//            connection=condb.getConnection();
+//            ResultSet rs1=connection.createStatement().executeQuery("SELECT column_name AS items FROM information_schema.columns WHERE table_name = 'employees_record' AND table_schema = 'final_project'");
+//            ResultSet rs2=connection.createStatement().executeQuery("SELECT column_name AS items FROM information_schema.columns WHERE table_name = 'useraccounts_records' AND table_schema = 'final_project'");
+//            ResultSet rs3=connection.createStatement().executeQuery("SELECT column_name AS items FROM information_schema.columns WHERE table_name = 'product_records' AND table_schema = 'final_project'");
+//            while(rs1.next()){
+//                employeeItems.add(rs1.getString("items"));
+//            }
+//            while(rs2.next()){
+//                userItems.add(rs2.getString("items"));
+//            }
+//            while(rs3.next()){
+//                productItems.add(rs3.getString("items"));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void search() throws SQLException, ClassNotFoundException{
@@ -873,7 +884,7 @@ public class EditRecordsPageController implements Initializable {
         
             while (rs.next()) {
                 employee.add(new Employee_Records(rs.getInt("employeeID"), rs.getString("empLname"), rs.getString("empFname"), rs.getString("empMname"), rs.getString("empMobile"), rs.getString("empEmail")));
-                }
+            }
         
             employeeLastnameColumn.setCellValueFactory(new PropertyValueFactory<>("empLname"));
             employeeFirstnameColumn.setCellValueFactory(new PropertyValueFactory<>("empFname"));
@@ -990,7 +1001,7 @@ public class EditRecordsPageController implements Initializable {
             employeeMobileLabel.setText("Mobile number");
             employeeEmailLabel.setText("Email Address");
             
-            employeeLastnameLabel.setStyle("-fx-text-fill: black");
+            employeeLastnameLabel.setStyle("-fx-text-fill: #000000");
             employeeFirstnameLabel.setStyle("-fx-text-fill: black");
             employeeMiddlenameLabel.setStyle("-fx-text-fill: black");
             employeeMobileLabel.setStyle("-fx-text-fill: black");
