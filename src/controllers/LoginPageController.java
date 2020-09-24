@@ -44,9 +44,12 @@ public class LoginPageController implements Initializable {
 
         String username = usernameField.getText();
         String password = passwordField.getText();
+
         StringBuilder sb = new StringBuilder();
         Formatter fm = new Formatter(sb);
+
         fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s' and status='active'", username, password);
+
         try {
 
             resultSet = connectionClass.select(sb.toString());
@@ -82,28 +85,22 @@ public class LoginPageController implements Initializable {
             a.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (NullPointerException e) {
-//            if the database is offline, connectionClass will not be initialized and usage of the class will throw a
-//            null pointer exception
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setHeaderText("Communication error");
-            a.setContentText("Please make sure database is online before logging in.");
-            a.showAndWait();
         }
 
     }
 
     @FXML
     void onKeyPressed(KeyEvent event) {
-//changes start here
         if (event.getCode() == KeyCode.ENTER) {
             String username = usernameField.getText();
             String password = passwordField.getText();
+
             StringBuilder sb = new StringBuilder();
             Formatter fm = new Formatter(sb);
-            fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s'and status='active'", username, password);
-            try {
 
+            fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s'and status='active'", username, password);
+
+            try {
                 resultSet = connectionClass.select(sb.toString());
 
                 if (resultSet.next()) {
@@ -139,13 +136,6 @@ public class LoginPageController implements Initializable {
                 a.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (NullPointerException e) {
-//            if the database is offline, connectionClass will not be initialized and usage of the class will throw a
-//            null pointer exception
-                Alert a = new Alert(Alert.AlertType.ERROR);
-                a.setHeaderText("Communication error");
-                a.setContentText("Please make sure database is online before logging in.");
-                a.showAndWait();
             }
         } else {
             return;
