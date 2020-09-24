@@ -56,18 +56,15 @@
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="employeeEmailLabel" style="-fx-text-fill: black;" text="Email Address" />
-                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <Button fx:id="employeeSaveButton" mnemonicParsing="false" onAction="#employeeSaveButtonClick" text="Save" />
                                     <Button fx:id="employeeUpdateButton" mnemonicParsing="false" onAction="#employeeUpdateButtonClick" text="Update" />
-                                    <Button fx:id="employeeDeleteButton" mnemonicParsing="false" onAction="#employeeDeleteButtonClick" text="Remove" />
+                                    <Button fx:id="employeeDeleteButton" mnemonicParsing="false" onAction="#employeeDeleteButtonClick" text="Delete" />
                                  </children>
                                  <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
                                     <Insets top="30.0" />
-                                 </padding>
+                                 </VBox.margin>
                               </HBox>
                            </children>
                            <padding>
@@ -232,7 +229,7 @@
                         <Region prefHeight="3.0" prefWidth="200.0" style="-fx-background-color: #03a9f4;" BorderPane.alignment="CENTER" />
                      </top>
                      <center>
-                        <TableView fx:id="productInfoTable" onMouseClicked="#productsRecordsTableSelected" prefHeight="451.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="productInfoTable" onMouseClicked="#productsRecordsTableSelected" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <columns>
                               <TableColumn fx:id="productRecordsNumberColumn" prefWidth="75.0" text="ID" />
                               <TableColumn fx:id="productRecordsDescriptionColumn" prefWidth="75.0" text="Description" />
