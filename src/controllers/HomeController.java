@@ -28,26 +28,26 @@ import java.util.ResourceBundle;
 
 
 public class HomeController implements Initializable {
-    
+
     EditRecordsPageController recordsController;
-    
+
     private boolean admin;
-    
+
     @FXML
     private Label activeUserLabel;
-    
+
     @FXML
     private Label seachByLabel;
-    
+
     @FXML
     private Label searchForLabel;
-    
+
     @FXML
     private Button cancelJobButton;
 
     @FXML
     private Button markButton;
-    
+
     @FXML
     private Button orderButton;
 
@@ -68,7 +68,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private TableView<Order_Summary> pendingTable;
-    
+
     @FXML
     private TableColumn<Order_Summary, Double> pendingAmountDueColumn;
 
@@ -77,13 +77,13 @@ public class HomeController implements Initializable {
 
     @FXML
     private TableColumn<Order_Summary, String> pendingClientFirstnameColumn;
-    
+
     @FXML
     private TableColumn<Order_Summary, String> pendingClientLastnameColumn;
 
     @FXML
     private TableColumn<Order_Summary, String> pendingContactNumColumn;
-    
+
     @FXML
     private TableColumn<Order_Summary, String> pendingEmailColumn;
 
@@ -119,22 +119,22 @@ public class HomeController implements Initializable {
 
     @FXML
     private TableView<Order_Summary> ClaimTable;
-    
+
     @FXML
     private TableColumn<Order_Summary, Double> claimAmountDueColumn;
-   
+
     @FXML
     private TableColumn<Order_Summary, Integer> claimJObNumColumn;
 
     @FXML
     private TableColumn<Order_Summary, String> claimFirstNameColumn;
-    
+
     @FXML
     private TableColumn<Order_Summary, String> claimLastnameColumn;
 
     @FXML
     private TableColumn<Order_Summary, String> claimContactNumColumn;
-    
+
     @FXML
     private TableColumn<Order_Summary, String> claimEmailColumn;
 
@@ -176,13 +176,12 @@ public class HomeController implements Initializable {
 
     @FXML
     void markButtonClicked(ActionEvent event) {
-        
+
         int id;
         Order_Summary markDone;
-        markDone=pendingTable.getSelectionModel().getSelectedItem();
-        id=markDone.getJobID();
-        
-        
+        markDone = pendingTable.getSelectionModel().getSelectedItem();
+        id = markDone.getJobID();
+
         StringBuilder sb = new StringBuilder();
         Formatter fm = new Formatter(sb);
         fm.format("UPDATE transaction_records SET status='for claiming' WHERE jobID=%d", id);
@@ -195,14 +194,14 @@ public class HomeController implements Initializable {
         fillObservableList();
         populateTables(pending, forClaim);
     }
-    
+
     @FXML
     void cancelJobButtonClicked(ActionEvent event) {
-        
+
         int id;
         Order_Summary cancelJob;
-        cancelJob=pendingTable.getSelectionModel().getSelectedItem();
-        id=cancelJob.getJobID();
+        cancelJob = pendingTable.getSelectionModel().getSelectedItem();
+        id = cancelJob.getJobID();
 
         StringBuilder sb = new StringBuilder();
         Formatter fm = new Formatter(sb);
@@ -217,7 +216,7 @@ public class HomeController implements Initializable {
         fillObservableList();
         populateTables(pending, forClaim);
     }
-    
+
     @FXML
     void claimButtonClicked(ActionEvent event) throws IOException {
 
@@ -227,8 +226,8 @@ public class HomeController implements Initializable {
         ClaimPageController claimPageController = loader.getController();
         claimPageController.setHomeController(this);
 
-        Scene scene2=new Scene(home);
-        Stage window=new Stage();
+        Scene scene2 = new Scene(home);
+        Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.initOwner(home.getScene().getWindow());
         window.setResizable(false);
@@ -237,17 +236,16 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void editRecordsButtonClicked(ActionEvent event) throws IOException{
-        
-        
+    void editRecordsButtonClicked(ActionEvent event) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/editRecordsPage.fxml"));
         Parent home = loader.load();
-        EditRecordsPageController recordsPageController=loader.getController();
+        EditRecordsPageController recordsPageController = loader.getController();
         recordsPageController.setHomeController(this);
         recordsPageController.setAdmin(isAdmin(activeUserLabel.getText()));
 
-        Scene scene2=new Scene(home);
-        Stage window=new Stage();
+        Scene scene2 = new Scene(home);
+        Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.initOwner(home.getScene().getWindow());
         window.setResizable(false);
@@ -258,11 +256,11 @@ public class HomeController implements Initializable {
 
     @FXML
     void logoutButtonClicked(ActionEvent event) throws IOException {
-        
-        Parent home = FXMLLoader.load(getClass().getResource("/views/LoginPage.fxml"));
-        Scene scene2=new Scene(home);
 
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent home = FXMLLoader.load(getClass().getResource("/views/LoginPage.fxml"));
+        Scene scene2 = new Scene(home);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.centerOnScreen();
         window.setMaximized(false);
         window.setResizable(false);
@@ -272,9 +270,6 @@ public class HomeController implements Initializable {
 
     @FXML
     void orderButtonClicked(ActionEvent event) throws IOException {
-        
-        
-
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/OrderPage.fxml"));
         Parent home = loader.load();
@@ -282,8 +277,8 @@ public class HomeController implements Initializable {
         orderPageController.setHomeController(this);
         orderPageController.setActiveUserID(activeUserLabel.getText());
 
-        Scene scene2=new Scene(home);
-        Stage window=new Stage();
+        Scene scene2 = new Scene(home);
+        Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.initOwner(home.getScene().getWindow());
         window.setResizable(false);
@@ -293,12 +288,11 @@ public class HomeController implements Initializable {
 
     @FXML
     void recordsButtonClicked(ActionEvent event) throws IOException {
-        
+
         Parent home = FXMLLoader.load(getClass().getResource("/views/OrderPage.fxml"));
-        
-        
-        Scene scene2=new Scene(home);
-        Stage window=new Stage();
+
+        Scene scene2 = new Scene(home);
+        Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.initOwner(home.getScene().getWindow());
         window.setResizable(false);
@@ -308,26 +302,27 @@ public class HomeController implements Initializable {
 
     @FXML
     void searchButtonClicked(ActionEvent event) throws IOException {
-            Parent home = FXMLLoader.load(getClass().getResource("/views/OrderPage.fxml"));
-            Scene scene2=new Scene(home); 
-            Stage window=new Stage();
-            window.initModality(Modality.APPLICATION_MODAL);
-            window.initOwner(home.getScene().getWindow());
-            window.setResizable(false);
-            window.setScene(scene2);
-            window.showAndWait();  
+        Parent home = FXMLLoader.load(getClass().getResource("/views/OrderPage.fxml"));
+        Scene scene2 = new Scene(home);
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.initOwner(home.getScene().getWindow());
+        window.setResizable(false);
+        window.setScene(scene2);
+        window.showAndWait();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         try {
             conn = new ConnectionClass();
         } catch (SQLException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
 
         fillObservableList();
+        populateTables(pending, forClaim);
     }
 
     public void fillObservableList() {
@@ -341,7 +336,7 @@ public class HomeController implements Initializable {
     }
 
     public void populateTables(ObservableList<Order_Summary> pending, ObservableList<Order_Summary> claim) {
-        
+
         pendingJobNUmColumn.setCellValueFactory(cellData -> cellData.getValue().jobIDProperty().asObject());
         pendingClientFirstnameColumn.setCellValueFactory(cellData -> cellData.getValue().firstnameProperty());
         pendingClientLastnameColumn.setCellValueFactory(cellData -> cellData.getValue().lastnameProperty());
@@ -381,28 +376,28 @@ public class HomeController implements Initializable {
         ClaimTable.setItems(claim);
     }
 
-    public void setActiveUser(String name){
+    public void setActiveUser(String name) {
         activeUserLabel.setText(name);
-    } 
-    
-    public boolean isAdmin(String fullname){
+    }
+
+    public boolean isAdmin(String fullname) {
         ResultSet rs3;
-        
+
         try {
-            Connection conb=conn.getConnection();
-            rs3=conb.createStatement().executeQuery("SELECT useraccounts_records.Admin FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE CONCAT(employees_record.empFname,' ',employees_record.empLname)='"+fullname+"'");
-            while(rs3.next()){
-                admin=rs3.getBoolean("Admin");
+            Connection conb = conn.getConnection();
+            rs3 = conb.createStatement().executeQuery("SELECT useraccounts_records.Admin FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE CONCAT(employees_record.empFname,' ',employees_record.empLname)='" + fullname + "'");
+            while (rs3.next()) {
+                admin = rs3.getBoolean("Admin");
             }
-        } catch (SQLException | ClassNotFoundException ex) {    
+        } catch (SQLException | ClassNotFoundException ex) {
         }
-        
+
         return admin;
     }
-    
-    public void setRecordController(EditRecordsPageController controller){
-        recordsController=controller;
+
+    public void setRecordController(EditRecordsPageController controller) {
+        recordsController = controller;
     }
-    
+
     
 }

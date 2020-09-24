@@ -19,11 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.management.Notification;
 import models.Notifications;
-import models.Query;
 
 public class OrderPageController implements Initializable {
 
