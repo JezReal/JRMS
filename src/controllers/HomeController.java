@@ -17,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Order_Summary;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -339,8 +338,6 @@ public class HomeController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        populateTables(pending, forClaim); 
     }
 
     public void populateTables(ObservableList<Order_Summary> pending, ObservableList<Order_Summary> claim) {

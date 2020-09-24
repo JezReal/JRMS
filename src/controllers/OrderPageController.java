@@ -226,7 +226,7 @@ public class OrderPageController implements Initializable {
         ObservableList<String> employee=FXCollections.observableArrayList();
 
         try {
-            resultSet = condb.select("SELECT productName FROM product_records WHERE status=''");
+            resultSet = condb.select("SELECT productName FROM product_records WHERE status='available'");
             resultSet2 = condb.select("SELECT CONCAT(employees_record.empLname,', ', employees_record.empFname) as fullName FROM employees_record WHERE employees_record.status='employed'");
 
             while(resultSet.next()){

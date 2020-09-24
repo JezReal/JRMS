@@ -71,8 +71,4 @@ public class Employee_Records {
         this.empEmail = empEmail;
     }
     
-    
-    
-    
-    
 }
