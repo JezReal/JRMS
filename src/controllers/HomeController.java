@@ -272,10 +272,6 @@ public class HomeController implements Initializable {
 
     @FXML
     void orderButtonClicked(ActionEvent event) throws IOException {
-        
-        
-
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/OrderPage.fxml"));
         Parent home = loader.load();
         OrderPageController orderPageController = loader.getController();
@@ -338,6 +334,8 @@ public class HomeController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        populateTables(pending, forClaim);
     }
 
     public void populateTables(ObservableList<Order_Summary> pending, ObservableList<Order_Summary> claim) {

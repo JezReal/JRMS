@@ -8,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import models.Notifications;
 import models.Order_Summary;
 import models.Transaction_Records;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,11 +21,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.management.Notification;
-import models.Notifications;
-import models.Query;
 
 public class OrderPageController implements Initializable {
 
@@ -412,7 +409,6 @@ public class OrderPageController implements Initializable {
             }
             connection.close();
         } catch (Exception ex) {
- System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
     }
