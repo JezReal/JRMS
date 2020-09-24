@@ -270,10 +270,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void orderButtonClicked(ActionEvent event) throws IOException {
-<<<<<<< HEAD
-=======
 
->>>>>>> 48ec48f7e388f235225c37ae4d09d166e45214ec
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/OrderPage.fxml"));
         Parent home = loader.load();
         OrderPageController orderPageController = loader.getController();
