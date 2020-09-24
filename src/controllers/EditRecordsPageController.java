@@ -20,6 +20,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Formatter;
 import java.util.ResourceBundle;
 
 public class EditRecordsPageController implements Initializable {
@@ -825,13 +826,13 @@ public class EditRecordsPageController implements Initializable {
 
     private void fillObservablelist() {
         selectedFilter = FXCollections.observableArrayList();
-        employeeRecordsFilter = FXCollections.observableArrayList("ID", "Last Name", "First Name", "Middle Name", "Mobile Number", "Email", "Status");
-        userAccountsRecordsFilter = FXCollections.observableArrayList("User ID", "Username", "Status");
-        productsRecordsFilter = FXCollections.observableArrayList("ID", "Product Name", "Status");
+        employeeRecordsFilter = FXCollections.observableArrayList("ID", "Last Name", "First Name", "Middle Name");
+        userAccountsRecordsFilter = FXCollections.observableArrayList("Username");
+        productsRecordsFilter = FXCollections.observableArrayList("Product Name");
 
-        employeeRecordsColumns = new ArrayList<>(Arrays.asList("employeeID", "empLname", "empFname", "empMname", "empMobile", "empEmail", "status"));
-        userAccountsRecordsColumns = new ArrayList<>(Arrays.asList("userID", "username", "status"));
-        productsRecordsColumns = new ArrayList<>(Arrays.asList("productID", "productName", "status"));
+        employeeRecordsColumns = new ArrayList<>(Arrays.asList("employeeID", "empLname", "empFname", "empMname"));
+        userAccountsRecordsColumns = new ArrayList<>(Arrays.asList("username"));
+        productsRecordsColumns = new ArrayList<>(Arrays.asList("productName"));
 //
 //        searchByCombobox.setItems(employeeRecordsFilter);
 
@@ -868,19 +869,56 @@ public class EditRecordsPageController implements Initializable {
 
     private void search() throws SQLException, ClassNotFoundException{
         
-        String category, searchFor;
+        String filter, searchFor = searchForField.getText();
+        int index = 0;
         ObservableList<Employee_Records> employee = FXCollections.observableArrayList();
         ObservableList<Products_Record> product = FXCollections.observableArrayList();
         ObservableList<userAccounts> user = FXCollections.observableArrayList();
-        
+
         connection = condb.getConnection();
-        
-        category=searchByCombobox.getValue();
-        searchFor=searchForField.getText();
-        
+
+        if (searchFor.length() == 0) {
+            if (employeeRecordsTab.isSelected()) {
+                updateEmloyeeRecordsTable();
+                return;
+            } else if (userAccountsRecordsTab.isSelected()) {
+                updateUserAccountTable();
+                return;
+            } else if (productsRecordsTab.isSelected()) {
+                updateProductsRecord();
+                return;
+            }
+        }
+
+
         if (employeeRecordsTab.isSelected()) {
-            
-            ResultSet rs= connection.createStatement().executeQuery("SELECT * FROM employees_record WHERE "+category+" = '"+searchFor+"'");
+            index = searchByCombobox.getSelectionModel().getSelectedIndex();
+            filter = employeeRecordsColumns.get(index);
+
+            if (filter == "ID") {
+                StringBuilder stringBuilder = new StringBuilder();
+                Formatter formatter = new Formatter(stringBuilder);
+
+                formatter.format("SELECT * FROM employees_record WHERE employeeID = %d AND status = 'employed'", Integer.valueOf(searchFor));
+
+                ResultSet resultSet = connection.createStatement().executeQuery(stringBuilder.toString());
+
+                while (resultSet.next()) {
+                    employee.add(new Employee_Records(resultSet.getInt("employeeID"), resultSet.getString("empLname"), resultSet.getString("empFname"), resultSet.getString("empMname"), resultSet.getString("empMobile"), resultSet.getString("empEmail")));
+                }
+
+                employeeLastnameColumn.setCellValueFactory(new PropertyValueFactory<>("empLname"));
+                employeeFirstnameColumn.setCellValueFactory(new PropertyValueFactory<>("empFname"));
+                employeeMIddlenameColumn.setCellValueFactory(new PropertyValueFactory<>("empMname"));
+                employeeNumberColumn.setCellValueFactory(new PropertyValueFactory<>("empNum"));
+                employeeMobileColumn.setCellValueFactory(new PropertyValueFactory<>("empMobile"));
+                employeeEmailColumn.setCellValueFactory(new PropertyValueFactory<>("empEmail"));
+                employeeInfoTable.setItems(employee);
+
+                return;
+            }
+
+            ResultSet rs= connection.createStatement().executeQuery("SELECT * FROM employees_record WHERE "+filter+" = '"+searchFor+"'");
         
             while (rs.next()) {
                 employee.add(new Employee_Records(rs.getInt("employeeID"), rs.getString("empLname"), rs.getString("empFname"), rs.getString("empMname"), rs.getString("empMobile"), rs.getString("empEmail")));
@@ -894,11 +932,11 @@ public class EditRecordsPageController implements Initializable {
             employeeEmailColumn.setCellValueFactory(new PropertyValueFactory<>("empEmail"));
             employeeInfoTable.setItems(employee);
             
-        }
-         
-        else if (userAccountsRecordsTab.isSelected()) {
+        } else if (userAccountsRecordsTab.isSelected()) {
+            index = searchByCombobox.getSelectionModel().getSelectedIndex();
+            filter = userAccountsRecordsColumns.get(index);
                     
-            ResultSet rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID, useraccounts_records.empID,useraccounts_records.username, useraccounts_records.password, useraccounts_records.Admin, employees_record.empFname, employees_record.empLname FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE "+category+"='"+searchFor+"'");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID, useraccounts_records.empID,useraccounts_records.username, useraccounts_records.password, useraccounts_records.Admin, employees_record.empFname, employees_record.empLname FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE "+filter+"='"+searchFor+"'");
 
             while (rs.next()) {
                 user.add(new userAccounts(rs.getInt("userID"), rs.getInt("empID"), rs.getString("username"), rs.getString("password"), rs.getString("empFname"), rs.getString("empLname"), rs.getBoolean("Admin")));
@@ -912,11 +950,11 @@ public class EditRecordsPageController implements Initializable {
             userAccountsPasswordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
             userAccountsAdminColumn.setCellValueFactory(new PropertyValueFactory<>("admin"));
             userAccountInfoTable.setItems(user);
-        } 
-        
-        else if(productsRecordsTab.isSelected()){
+        } else if(productsRecordsTab.isSelected()){
+            index = searchByCombobox.getSelectionModel().getSelectedIndex();
+            filter = productsRecordsColumns.get(index);
             
-            ResultSet rs3 = connection.createStatement().executeQuery("select * from product_records WHERE "+category+"='"+searchFor+"'");
+            ResultSet rs3 = connection.createStatement().executeQuery("select * from product_records WHERE "+filter+"='"+searchFor+"'");
 
             while (rs3.next()) {
                 product.add(new Products_Record(rs3.getInt("productID"), rs3.getString("productName"), rs3.getDouble("productPrice")));
@@ -1133,5 +1171,3 @@ public class EditRecordsPageController implements Initializable {
         } 
     }
 }
-    
-    
