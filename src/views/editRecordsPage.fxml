@@ -24,33 +24,33 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b3e5fc;">
                      <left>
-                        <VBox fx:id="employeeControlsBox" alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="450.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
+                        <VBox fx:id="employeeControlsBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="225.0" BorderPane.alignment="TOP_CENTER">
                            <children>
-                              <TextField fx:id="employeeLastnameField" alignment="CENTER" styleClass="editTextfield">
+                              <TextField fx:id="employeeLastnameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="editTextfield">
                                  <VBox.margin>
                                     <Insets top="35.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="employeeLastnameLabel" style="-fx-text-fill: black;" text="Lastname" />
-                              <TextField fx:id="employeeFirstnameField" alignment="CENTER">
+                              <TextField fx:id="employeeFirstnameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="employeeFirstnameLabel" style="-fx-text-fill: black;" text="Firstname" />
-                              <TextField fx:id="employeeMiddlenameField" alignment="CENTER">
+                              <TextField fx:id="employeeMiddlenameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="employeeMiddlenameLabel" style="-fx-text-fill: black;" text="MIddlename" />
-                              <TextField fx:id="employeeMobileField" alignment="CENTER">
+                              <TextField fx:id="employeeMobileField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="employeeMobileLabel" style="-fx-text-fill: black;" text="Mobile Number" />
-                              <TextField fx:id="employeeEmailField" alignment="CENTER">
+                              <TextField fx:id="employeeEmailField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -58,9 +58,9 @@
                               <Label fx:id="employeeEmailLabel" style="-fx-text-fill: black;" text="Email Address" />
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                  <children>
-                                    <Button fx:id="employeeSaveButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#employeeSaveButtonClick" prefHeight="26.0" text="Save" />
+                                    <Button fx:id="employeeSaveButton" mnemonicParsing="false" onAction="#employeeSaveButtonClick" text="Save" />
                                     <Button fx:id="employeeUpdateButton" mnemonicParsing="false" onAction="#employeeUpdateButtonClick" text="Update" />
-                                    <Button fx:id="employeeDeleteButton" mnemonicParsing="false" onAction="#employeeDeleteButtonClick" text="Delete" />
+                                    <Button fx:id="employeeDeleteButton" mnemonicParsing="false" onAction="#employeeDeleteButtonClick" text="Remove" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
@@ -76,7 +76,7 @@
                         </VBox>
                      </left>
                      <center>
-                        <TableView fx:id="employeeInfoTable" onMouseClicked="#employeeRecordsTableSelected" prefHeight="463.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="employeeInfoTable" minWidth="-Infinity" onMouseClicked="#employeeRecordsTableSelected" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                           <columns>
                             <TableColumn fx:id="employeeNumberColumn" prefWidth="75.0" text="ID" />
                             <TableColumn fx:id="employeeLastnameColumn" prefWidth="75.0" text="Lastname" />
@@ -105,9 +105,9 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b3e5fc;">
                      <left>
-                        <VBox fx:id="userControlsBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b3e5fc;" BorderPane.alignment="CENTER">
+                        <VBox fx:id="userControlsBox" alignment="TOP_CENTER" blendMode="SRC_ATOP" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #b3e5fc;" BorderPane.alignment="CENTER">
                            <children>
-                              <ComboBox fx:id="userAccountSelectEmployeeComboBox" onAction="#userAccountSelectionChanged" prefHeight="26.0" prefWidth="202.0">
+                              <ComboBox fx:id="userAccountSelectEmployeeComboBox" maxWidth="-Infinity" minWidth="-Infinity" onAction="#userAccountSelectionChanged" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="35.0" />
                                  </VBox.margin></ComboBox>
@@ -115,25 +115,25 @@
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin></Label>
-                              <TextField fx:id="userAccountsFirstnameField" alignment="CENTER" editable="false">
+                              <TextField fx:id="userAccountsFirstnameField" alignment="CENTER" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="userAccountsPasswordLabel" text="Firstname" />
-                              <TextField fx:id="userAccountsLastnameField" alignment="CENTER" editable="false">
+                              <TextField fx:id="userAccountsLastnameField" alignment="CENTER" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="userAccountsPasswordLabel" text="Lastname" />
-                              <TextField fx:id="userAccountsUsernameField" alignment="CENTER">
+                              <TextField fx:id="userAccountsUsernameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="userAccountsUsernameLabel" text="Username" />
-                              <TextField fx:id="userAccountsPasswordField" alignment="CENTER">
+                              <TextField fx:id="userAccountsPasswordField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -198,15 +198,15 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b3e5fc;">
                      <left>
-                        <VBox fx:id="productControlsBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b3e5fc;" BorderPane.alignment="CENTER">
+                        <VBox fx:id="productControlsBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #b3e5fc;" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="productsRecordsNameField" alignment="CENTER">
+                              <TextField fx:id="productsRecordsNameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="35.0" />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="productsRecordsDescriptionLabel" text="Description" />
-                              <TextField fx:id="productsRecordsPriceField" alignment="CENTER">
+                              <TextField fx:id="productsRecordsPriceField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>

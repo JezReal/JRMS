@@ -59,7 +59,7 @@
                      <children>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="icons">
                            <image>
-                              <Image url="@../assets/claim.png" />
+                              <Image url="@../assets/CLAIM.png" />
                            </image>
                         </ImageView>
                         <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="CLAIM">

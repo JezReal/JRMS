@@ -738,7 +738,7 @@ public class EditRecordsPageController implements Initializable {
         ObservableList<String> empID = FXCollections.observableArrayList();
         try {
             connection = condb.getConnection();
-            ResultSet rs = connection.createStatement().executeQuery("SELECT CONCAT(employees_record.employeeID,'-',employees_record.empLname) AS employee FROM employees_record");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT CONCAT(employees_record.employeeID,'-',employees_record.empLname) AS employee FROM employees_record WHERE employees_record.status='employed'");
 
             while (rs.next()) {
                 empID.add(rs.getString("employee"));
@@ -784,6 +784,7 @@ public class EditRecordsPageController implements Initializable {
                   setDefaults();
                   updateEmloyeeRecordsTable();
                   updateUserAccountTable();
+                  populateEmpIdChoiceBox();
               }
               else if(t1.equals(userAccountsRecordsTab)){
                   searchByCombobox.setItems(userItems);
@@ -798,6 +799,7 @@ public class EditRecordsPageController implements Initializable {
                   setDefaults();
                   updateProductsRecord();
                   updateUserAccountTable();
+                  populateEmpIdChoiceBox();
               }
               
               searchForField.clear();
@@ -1046,7 +1048,7 @@ public class EditRecordsPageController implements Initializable {
         }
         return valid;   
     } 
-    
+   
     public void incompleteFields(){
         
         if(employeeRecordsTab.isSelected()){

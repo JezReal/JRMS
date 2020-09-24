@@ -35,7 +35,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="469.0" promptText="Username" style="-fx-background-color: transparent;" />
+                  <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="469.0" promptText="Username" style="-fx-background-color: transparent;" text="mjmargallo" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
@@ -54,7 +54,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="506.0" promptText="Password" style="-fx-background-color: transparent;" />
+                  <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="506.0" promptText="Password" style="-fx-background-color: transparent;" text="mj123" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />

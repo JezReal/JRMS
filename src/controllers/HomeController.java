@@ -245,7 +245,6 @@ public class HomeController implements Initializable {
         Parent home = loader.load();
         EditRecordsPageController recordsPageController=loader.getController();
         recordsPageController.setHomeController(this);
-        System.out.println(isAdmin(activeUserLabel.getText()));
         recordsPageController.setAdmin(isAdmin(activeUserLabel.getText()));
 
         Scene scene2=new Scene(home);
