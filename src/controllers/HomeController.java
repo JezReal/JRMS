@@ -266,10 +266,13 @@ public class HomeController implements Initializable {
 
     @FXML
     void logoutButtonClicked(ActionEvent event) throws IOException {
+        
         Parent home = FXMLLoader.load(getClass().getResource("/views/LoginPage.fxml"));
         Scene scene2=new Scene(home);
 
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.centerOnScreen();
+        window.setMaximized(false);
         window.setResizable(false);
         window.setScene(scene2);
         window.show();
