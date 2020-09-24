@@ -175,11 +175,8 @@ public class LoginPageController implements Initializable {
         try {
             connectionClass = new ConnectionClass();
         } catch (SQLException e) {
-//            TODO: load alert after login page has initialized
-//            guide: https://stackoverflow.com/questions/52693199/check-if-a-stage-is-already-open-before-open-it-again-javafx
              Notifications connectionUnsuccessful = new Notifications("Connection Error", "The application cannot connect to the database");
              connectionUnsuccessful.showError();     
         }
-    }    
-    
+    }
 }
