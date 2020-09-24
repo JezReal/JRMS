@@ -7,8 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
-
 public class Query{
     private String sql;
     ConnectionClass condb;

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -12,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="370.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController">
    <center>
-      <VBox alignment="CENTER_LEFT" prefHeight="400.0" prefWidth="370.0" spacing="20.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="246.0" prefWidth="370.0" spacing="20.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: narrow; -fx-fill: #03a9f4;" text="User Login">
                <VBox.margin>
@@ -26,10 +27,13 @@
             </Text>
             <HBox alignment="CENTER_LEFT" onKeyPressed="#onKeyPressed" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: #03a9f4; -fx-border-radius: 15;">
                <children>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/6824367_preview.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
                   </ImageView>
                   <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="469.0" promptText="Username" style="-fx-background-color: transparent;" />
                </children>
@@ -42,10 +46,13 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" onKeyPressed="#onKeyPressed" prefHeight="29.0" prefWidth="258.0" style="-fx-border-color: #03a9f4; -fx-border-radius: 15;">
                <children>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/password.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
                   </ImageView>
                   <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="506.0" promptText="Password" style="-fx-background-color: transparent;" />
                </children>
@@ -67,4 +74,26 @@
          </children>
       </VBox>
    </center>
+   <bottom>
+      <VBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="370.0" style="-fx-background-color: #03a9f4;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LOGO.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label text="Job Reciever &amp; Management System" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </bottom>
 </BorderPane>
