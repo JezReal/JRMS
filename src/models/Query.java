@@ -73,11 +73,4 @@ public class Query{
         }
         return rs;
     }
-
-    public static void main(String[] args) {
-
-
-    }
-
-
 }

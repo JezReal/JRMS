@@ -46,7 +46,7 @@ public class LoginPageController implements Initializable {
         String password = passwordField.getText();
         StringBuilder sb = new StringBuilder();
         Formatter fm = new Formatter(sb);
-        fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s'", username, password);
+        fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s' and status='active'", username, password);
         try {
 
             resultSet = connectionClass.select(sb.toString());
@@ -101,7 +101,7 @@ public class LoginPageController implements Initializable {
             String password = passwordField.getText();
             StringBuilder sb = new StringBuilder();
             Formatter fm = new Formatter(sb);
-            fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s'", username, password);
+            fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s'and status='active'", username, password);
             try {
 
                 resultSet = connectionClass.select(sb.toString());

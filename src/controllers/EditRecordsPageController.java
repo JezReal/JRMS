@@ -473,7 +473,8 @@ public class EditRecordsPageController implements Initializable {
             
             try {
             connection = condb.getConnection();
-            String sql = "DELETE  FROM useraccounts_records WHERE userID = '" + id + "'";
+            String sql ="UPDATE useraccounts_records SET status ='inactive' WHERE userID='"+id+"'";
+            //"DELETE  FROM useraccounts_records WHERE userID = '" + id + "'"
             PreparedStatement prep = connection.prepareStatement(sql);
             prep.execute();
         } catch (Exception e) {
@@ -611,7 +612,7 @@ public class EditRecordsPageController implements Initializable {
             userAccountInfoTable.getItems().add(user);
 
             connection = condb.getConnection();
-            String sql = "INSERT INTO useraccounts_records VALUES('" + user.getUsernum() + "','" + user.getEmpid() + "','" + user.getUsername() + "','" + user.getPassword() + "','"+value+"')";
+            String sql = "INSERT INTO useraccounts_records VALUES('" + user.getUsernum() + "','" + user.getEmpid() + "','" + user.getUsername() + "','" + user.getPassword() + "','"+value+"','active')";
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
             connection.close();
@@ -661,7 +662,7 @@ public class EditRecordsPageController implements Initializable {
         try {
 
             connection = condb.getConnection();
-            ResultSet rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID, useraccounts_records.empID,useraccounts_records.username, useraccounts_records.password, employees_record.empFname, employees_record.empLname, useraccounts_records.Admin FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID, useraccounts_records.empID,useraccounts_records.username, useraccounts_records.password, employees_record.empFname, employees_record.empLname, useraccounts_records.Admin FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE useraccounts_records.status='active'");
 
             while (rs.next()) {
                 user.add(new userAccounts(rs.getInt("userID"), rs.getInt("empID"), rs.getString("username"), rs.getString("password"), rs.getString("empFname"), rs.getString("empLname"), rs.getBoolean("Admin")));
