@@ -169,8 +169,8 @@ public class LoginPageController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        usernameField.clear();
-        passwordField.clear();
+//        usernameField.clear();
+//        passwordField.clear();
 
         try {
             connectionClass = new ConnectionClass();
