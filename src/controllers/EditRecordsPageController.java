@@ -1102,23 +1102,23 @@ public class EditRecordsPageController implements Initializable {
         if(employeeRecordsTab.isSelected()){
             if (employeeFirstnameField.getText().isEmpty()) {
                 employeeFirstnameLabel.setStyle("-fx-text-fill: red");
-                employeeFirstnameLabel.setText("Fill up this field.");
+                employeeFirstnameLabel.setText("Fill up this field(Firstname).");
             }
             if (employeeLastnameField.getText().isEmpty()) {
                 employeeLastnameLabel.setStyle("-fx-text-fill: red");
-                employeeLastnameLabel.setText("Fill up this field.");   
+                employeeLastnameLabel.setText("Fill up this field(Lastname).");   
             }
             if (employeeMiddlenameField.getText().isEmpty()) {
                 employeeMiddlenameLabel.setStyle("-fx-text-fill: red");
-                employeeMiddlenameLabel.setText("Fill up this field.");   
+                employeeMiddlenameLabel.setText("Fill up this field(Middle name).");   
             }
             if (employeeMobileField.getText().isEmpty()) {
                 employeeMobileLabel.setStyle("-fx-text-fill: red");
-                employeeMobileLabel.setText("Fill up this field.");   
+                employeeMobileLabel.setText("Fill up this field(Mobile).");   
             }
             if (employeeEmailField.getText().isEmpty()) {
                 employeeEmailLabel.setStyle("-fx-text-fill: red");
-                employeeEmailLabel.setText("Fill up this field.");   
+                employeeEmailLabel.setText("Fill up this field(Email).");   
             }
    
         }
@@ -1127,11 +1127,11 @@ public class EditRecordsPageController implements Initializable {
             
             if (userAccountsUsernameField.getText().isEmpty()) {
                 userAccountsUsernameLabel.setStyle("-fx-text-fill: red");
-                userAccountsUsernameLabel.setText("Fill up this field.");     
+                userAccountsUsernameLabel.setText("Fill up this field(Username).");     
             }
             if (userAccountsPasswordField.getText().isEmpty()) {
                 userAccountsPasswordLabel.setStyle("-fx-text-fill: red");
-                userAccountsPasswordLabel.setText("Fill up this field.");     
+                userAccountsPasswordLabel.setText("Fill up this field(Password).");     
             }
 
         } 
@@ -1139,11 +1139,11 @@ public class EditRecordsPageController implements Initializable {
         else if(productsRecordsTab.isSelected()){
             if (productsRecordsNameField.getText().isEmpty()) {
                 productsRecordsDescriptionLabel.setStyle("-fx-text-fill: red");
-                productsRecordsDescriptionLabel.setText("Fill up this field.");     
+                productsRecordsDescriptionLabel.setText("Fill up this field(Description).");     
             }
             if (productsRecordsPriceField.getText().isEmpty()) {
                 productsRecordsPriceLabel.setStyle("-fx-text-fill: red");
-                productsRecordsPriceLabel.setText("Fill up this field.");     
+                productsRecordsPriceLabel.setText("Fill up this field(Price).");     
             }
         }   
     }

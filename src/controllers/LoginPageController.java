@@ -29,6 +29,9 @@ public class LoginPageController implements Initializable {
     
     ConnectionClass connectionClass;
     ResultSet resultSet;
+    int userID;
+    String username;
+    String password;
     
     @FXML
     private TextField usernameField;
@@ -42,8 +45,8 @@ public class LoginPageController implements Initializable {
     @FXML
     void loginButtonClicked(ActionEvent event) {
 
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        username = usernameField.getText();
+        password = passwordField.getText();
 
         StringBuilder sb = new StringBuilder();
         Formatter fm = new Formatter(sb);
@@ -65,6 +68,7 @@ public class LoginPageController implements Initializable {
 
                 HomeController controller=loader.getController();
                 controller.setActiveUser(getLoggedinUser());
+                controller.setActiveUserID(getUserId());
 //                close database connection
                 connectionClass.close();
                 window.setMaximized(true);
@@ -86,6 +90,8 @@ public class LoginPageController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        
 
     }
 
@@ -176,5 +182,25 @@ public class LoginPageController implements Initializable {
              Notifications connectionUnsuccessful = new Notifications("Connection Error", "The application cannot connect to the database");
              connectionUnsuccessful.showError();     
         }
+        
+    }
+    
+    public int getUserId(){
+        
+        StringBuilder sb = new StringBuilder();
+        Formatter fm = new Formatter(sb);
+        fm.format("SELECT userID FROM useraccounts_records WHERE username='"+username+"' AND password='"+password+"'");
+        try {
+
+            resultSet = connectionClass.select(sb.toString());
+            while (resultSet.next()) {
+                userID=resultSet.getInt("userID");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        
+        return userID;
     }
 }
