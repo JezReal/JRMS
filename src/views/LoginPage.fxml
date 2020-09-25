@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="370.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="370.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController">
    <center>
       <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="246.0" prefWidth="370.0" spacing="20.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -35,7 +35,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="469.0" promptText="Username" style="-fx-background-color: transparent;" text="mjmargallo" />
+                  <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="469.0" promptText="Username" style="-fx-background-color: transparent;" text="jjmartin" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
@@ -54,7 +54,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="506.0" promptText="Password" style="-fx-background-color: transparent;" text="mj123" />
+                  <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="506.0" promptText="Password" style="-fx-background-color: transparent;" text="jjm123" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />

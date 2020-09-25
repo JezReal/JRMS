@@ -98,32 +98,32 @@ public class LoginPageController implements Initializable {
     @FXML
     void onKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            String username = usernameField.getText();
-            String password = passwordField.getText();
+            username = usernameField.getText();
+            password = passwordField.getText();
 
             StringBuilder sb = new StringBuilder();
             Formatter fm = new Formatter(sb);
 
-            fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s'and status='active'", username, password);
+            fm.format("SELECT * FROM useraccounts_records WHERE username='%s' and password='%s' and status='active'", username, password);
 
             try {
+
                 resultSet = connectionClass.select(sb.toString());
 
                 if (resultSet.next()) {
-                    FXMLLoader loader = new FXMLLoader();
+                    FXMLLoader loader=new FXMLLoader();
                     loader.setLocation(getClass().getResource("/views/home.fxml"));
                     Parent home = loader.load();
-                    Scene scene2 = new Scene(home);
+                    Scene scene2=new Scene(home);
 
-                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
                     window.setScene(scene2);
 
-                    HomeController controller = loader.getController();
+                    HomeController controller=loader.getController();
                     controller.setActiveUser(getLoggedinUser());
-
+                    controller.setActiveUserID(getUserId());
 //                close database connection
                     connectionClass.close();
-
                     window.setMaximized(true);
                     window.setResizable(true);
                     window.show();
