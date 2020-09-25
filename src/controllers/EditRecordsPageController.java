@@ -517,10 +517,10 @@ public class EditRecordsPageController implements Initializable {
             statement.executeUpdate(sql);
             
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             
             e.printStackTrace();
         }
-
         successful("Success!", "The new product was saved successfully.");
         updateProductsRecord();
         clearFields();
@@ -534,8 +534,7 @@ public class EditRecordsPageController implements Initializable {
         
         if (!validateFields()) {
             defaultLabels();
-            incompleteFields();
-            
+            incompleteFields();   
         }
         else{
             try {
@@ -553,7 +552,7 @@ public class EditRecordsPageController implements Initializable {
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (Exception e) {
-//            System.out.println(e.getMessage());
+           System.out.println(e.getMessage());
             e.printStackTrace();
         }
         updateEmloyeeRecordsTable();
@@ -840,13 +839,13 @@ public class EditRecordsPageController implements Initializable {
 //        userItems=FXCollections.observableArrayList();
 //        productItems=FXCollections.observableArrayList();
 //
-//        employeeFields = FXCollections.observableArrayList();
-//        userFields = FXCollections.observableArrayList();
-//        productFields = FXCollections.observableArrayList();
-//
-//        employeeFields.addAll(employeeLastnameField, employeeFirstnameField, employeeMiddlenameField, employeeMobileField, employeeEmailField);
-//        userFields.addAll(userAccountsFirstnameField, userAccountsLastnameField, userAccountsUsernameField, userAccountsPasswordField);
-//        productFields.addAll(productsRecordsNameField,  productsRecordsPriceField);
+        employeeFields = FXCollections.observableArrayList();
+        userFields = FXCollections.observableArrayList();
+        productFields = FXCollections.observableArrayList();
+
+        employeeFields.addAll(employeeLastnameField, employeeFirstnameField, employeeMiddlenameField, employeeMobileField, employeeEmailField);
+        userFields.addAll(userAccountsFirstnameField, userAccountsLastnameField, userAccountsUsernameField, userAccountsPasswordField);
+        productFields.addAll(productsRecordsNameField,  productsRecordsPriceField);
 //
 //        try {
 //            connection=condb.getConnection();
@@ -1069,7 +1068,7 @@ public class EditRecordsPageController implements Initializable {
     }
     
     public boolean validateFields(){
-                
+        
         boolean valid = true;
         
         if(employeeRecordsTab.isSelected()){
@@ -1095,7 +1094,7 @@ public class EditRecordsPageController implements Initializable {
                 }
             }    
         }
-        return valid;   
+        return valid; 
     } 
    
     public void incompleteFields(){

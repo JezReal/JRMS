@@ -392,6 +392,7 @@ public class HomeController implements Initializable {
                 admin = rs3.getBoolean("Admin");
             }
         } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
         }
 
         return admin;
