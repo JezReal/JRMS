@@ -917,7 +917,7 @@ public class EditRecordsPageController implements Initializable {
                 return;
             }
 
-            ResultSet rs= connection.createStatement().executeQuery("SELECT * FROM employees_record WHERE "+filter+" = '"+searchFor+"'");
+            ResultSet rs= connection.createStatement().executeQuery("SELECT * FROM employees_record WHERE "+filter+" LIKE '%"+searchFor+"%'");
         
             while (rs.next()) {
                 employee.add(new Employee_Records(rs.getInt("employeeID"), rs.getString("empLname"), rs.getString("empFname"), rs.getString("empMname"), rs.getString("empMobile"), rs.getString("empEmail")));
@@ -935,7 +935,7 @@ public class EditRecordsPageController implements Initializable {
             index = searchByCombobox.getSelectionModel().getSelectedIndex();
             filter = userAccountsRecordsColumns.get(index);
                     
-            ResultSet rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID, useraccounts_records.empID,useraccounts_records.username, useraccounts_records.password, useraccounts_records.Admin, employees_record.empFname, employees_record.empLname FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE "+filter+"='"+searchFor+"'");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID, useraccounts_records.empID,useraccounts_records.username, useraccounts_records.password, useraccounts_records.Admin, employees_record.empFname, employees_record.empLname FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE "+filter+" LIKE '%"+searchFor+"%'");
 
             while (rs.next()) {
                 user.add(new userAccounts(rs.getInt("userID"), rs.getInt("empID"), rs.getString("username"), rs.getString("password"), rs.getString("empFname"), rs.getString("empLname"), rs.getBoolean("Admin")));
@@ -953,7 +953,7 @@ public class EditRecordsPageController implements Initializable {
             index = searchByCombobox.getSelectionModel().getSelectedIndex();
             filter = productsRecordsColumns.get(index);
             
-            ResultSet rs3 = connection.createStatement().executeQuery("select * from product_records WHERE "+filter+"='"+searchFor+"'");
+            ResultSet rs3 = connection.createStatement().executeQuery("select * from product_records WHERE "+filter+" LIKE '%"+searchFor+"%'");
 
             while (rs3.next()) {
                 product.add(new Products_Record(rs3.getInt("productID"), rs3.getString("productName"), rs3.getDouble("productPrice")));
