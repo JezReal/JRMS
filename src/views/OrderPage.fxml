@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="603.0" prefWidth="1136.0" style="-fx-background-color: #b3e5fc;" stylesheets="@../stylesheets/home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderPageController">
+<BorderPane prefHeight="603.0" prefWidth="1136.0" style="-fx-background-color: #b3e5fc;" stylesheets="@../stylesheets/home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderPageController">
    <center>
       <HBox maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
@@ -38,7 +38,7 @@
                      <children>
                         <HBox alignment="TOP_CENTER">
                            <children>
-                              <VBox prefHeight="426.0" prefWidth="250.0">
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="250.0">
                                  <children>
                                     <Label fx:id="dateOrderLabel" text="Date Ordered">
                                        <VBox.margin>
@@ -87,7 +87,7 @@
                                     <Insets left="20.0" right="10.0" />
                                  </padding>
                               </VBox>
-                              <VBox prefHeight="493.0" prefWidth="250.0">
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="250.0" stylesheets="@../stylesheets/home.css">
                                  <children>
                                     <Label fx:id="chooseProductLabel" text="Choose Product*">
                                        <VBox.margin>
@@ -97,7 +97,7 @@
                                     <ComboBox fx:id="chooseProductComboBox" prefHeight="25.0" prefWidth="223.0" />
                                     <Label fx:id="sizeLabel" text="Size in feet*">
                                        <VBox.margin>
-                                          <Insets top="20.0" />
+                                          <Insets top="21.0" />
                                        </VBox.margin>
                                     </Label>
                                     <HBox prefHeight="24.0" prefWidth="221.0" spacing="5.0">
@@ -114,8 +114,8 @@
                                     </Label>
                                     <HBox spacing="10.0">
                                        <children>
-                                          <TextField fx:id="quantityField" text="1" />
-                                          <Button fx:id="clearButton3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#calculatePriceClicked" style="-fx-background-color: #03a9f4; -fx-text-fill: WHITE;" text="Calculate" />
+                                          <TextField fx:id="quantityField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" text="1" />
+                                          <Button fx:id="clearButton3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#calculatePriceClicked" style="-fx-text-fill: white;" styleClass="mainButtons" text="Calculate" />
                                        </children>
                                     </HBox>
                                     <Label fx:id="amountDueLabel" text="Amount Due*">
@@ -131,8 +131,8 @@
                                     </Label>
                                     <HBox spacing="10.0">
                                        <children>
-                                          <TextField fx:id="amountPaidField" text="0" />
-                                          <Button fx:id="clearButton2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#calculateChangeAndBalanceClicked" style="-fx-background-color: #03a9f4; -fx-text-fill: WHITE;" text="Calculate" />
+                                          <TextField fx:id="amountPaidField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="140.0" text="0" />
+                                          <Button fx:id="clearButton2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#calculateChangeAndBalanceClicked" style="-fx-text-fill: white;" styleClass="mainButtons" text="Calculate" />
                                        </children>
                                     </HBox>
                                     <Label fx:id="changeLabel" text="Change">
@@ -152,8 +152,8 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                        <children>
-                                          <Button fx:id="clearButton1" mnemonicParsing="false" onAction="#clearButtonClicked" style="-fx-background-color: #03a9f4; -fx-text-fill: WHITE;" text="Clear" />
-                                          <Button fx:id="viewSummaryButton" defaultButton="true" mnemonicParsing="false" onAction="#viewSummaryButtonClicked" style="-fx-background-color: #03a9f4; -fx-text-fill: WHITE;" text="View Summary">
+                                          <Button fx:id="clearButton1" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clearButtonClicked" prefHeight="26.0" prefWidth="90.0" style="-fx-text-fill: white;" styleClass="mainButtons" text="Clear" />
+                                          <Button fx:id="viewSummaryButton" defaultButton="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewSummaryButtonClicked" prefWidth="130.0" style="-fx-text-fill: white;" styleClass="mainButtons" text="View Summary">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -196,7 +196,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                   </TextArea>
-                  <Button fx:id="saveTransactionButton1" mnemonicParsing="false" onAction="#saveTransactionButtonClicked" style="-fx-background-color: #03a9f4; -fx-text-fill: WHITE;" text="Save Transaction" />
+                  <Button fx:id="saveTransactionButton1" mnemonicParsing="false" onAction="#saveTransactionButtonClicked" style="-fx-text-fill: white;" styleClass="mainButtons" text="Save Transaction" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

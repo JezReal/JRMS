@@ -33,8 +33,8 @@
     -fx-text-fill:  white;
 }
 .button:hover{ 
-    -fx-scale-y: 1.1;
-    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
     -fx-background-color: #0288d1;
     transition: -fx-background-color 3s;
 }

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #b3e5fc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditRecordsPageController">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #b3e5fc;" stylesheets="@../stylesheets/home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditRecordsPageController">
    <center>
       <TabPane fx:id="myTabPane" styleClass="tabPane" stylesheets="@../stylesheets/Stylesheet.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -56,11 +56,11 @@
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="employeeEmailLabel" style="-fx-text-fill: black;" text="Email Address" />
-                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" stylesheets="@../stylesheets/home.css">
                                  <children>
                                     <Button fx:id="employeeSaveButton" mnemonicParsing="false" onAction="#employeeSaveButtonClick" text="Save" />
                                     <Button fx:id="employeeUpdateButton" mnemonicParsing="false" onAction="#employeeUpdateButtonClick" text="Update" />
-                                    <Button fx:id="employeeDeleteButton" mnemonicParsing="false" onAction="#employeeDeleteButtonClick" text="Delete" />
+                                    <Button fx:id="employeeDeleteButton" mnemonicParsing="false" onAction="#employeeDeleteButtonClick" stylesheets="@../stylesheets/home.css" text="Delete" />
                                  </children>
                                  <VBox.margin>
                                     <Insets top="30.0" />
@@ -150,9 +150,9 @@
                               </HBox>
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                  <children>
-                                    <Button fx:id="userAccountsSaveButton" mnemonicParsing="false" onAction="#userAccountsSaveButtonClicked" style="-fx-background-color: #03a9f4;" text="Save" />
-                                    <Button fx:id="userAccountsEditButton" mnemonicParsing="false" onAction="#userAccountsEditButtonClicked" style="-fx-background-color: #03a9f4;" text="Update" />
-                                    <Button fx:id="userAccountsDeleteButton" mnemonicParsing="false" onAction="#userAccountsDeleteButtonClicked" style="-fx-background-color: #03a9f4;" text="Delete" />
+                                    <Button fx:id="userAccountsSaveButton" mnemonicParsing="false" onAction="#userAccountsSaveButtonClicked" text="Save" />
+                                    <Button fx:id="userAccountsEditButton" mnemonicParsing="false" onAction="#userAccountsEditButtonClicked" text="Update" />
+                                    <Button fx:id="userAccountsDeleteButton" mnemonicParsing="false" onAction="#userAccountsDeleteButtonClicked" text="Delete" />
                                  </children>
                                  <VBox.margin>
                                     <Insets top="30.0" />
@@ -195,7 +195,7 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b3e5fc;">
                      <left>
-                        <VBox fx:id="productControlsBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #b3e5fc;" BorderPane.alignment="CENTER">
+                        <VBox fx:id="productControlsBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #b3e5fc;" stylesheets="@../stylesheets/home.css" BorderPane.alignment="CENTER">
                            <children>
                               <TextField fx:id="productsRecordsNameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                                  <VBox.margin>
@@ -211,9 +211,9 @@
                               <Label fx:id="productsRecordsPriceLabel" text="Price" />
                               <HBox alignment="TOP_CENTER" spacing="10.0">
                                  <children>
-                                    <Button fx:id="productsRecordsSaveButton" mnemonicParsing="false" onAction="#productsRecordsSaveButtonClicked" style="-fx-background-color: #03a9f4;" text="Save" />
-                                    <Button fx:id="productsRecordsEditButton" mnemonicParsing="false" onAction="#productsRecordsEditButtonClicked" style="-fx-background-color: #03a9f4;" text="Update" />
-                                    <Button fx:id="productsRecordsDeleteButton" mnemonicParsing="false" onAction="#productsRecordsDeleteButtonClicked" style="-fx-background-color: #03a9f4;" text="Delete" />
+                                    <Button fx:id="productsRecordsSaveButton" mnemonicParsing="false" onAction="#productsRecordsSaveButtonClicked" text="Save" />
+                                    <Button fx:id="productsRecordsEditButton" mnemonicParsing="false" onAction="#productsRecordsEditButtonClicked" text="Update" />
+                                    <Button fx:id="productsRecordsDeleteButton" mnemonicParsing="false" onAction="#productsRecordsDeleteButtonClicked" text="Delete" />
                                  </children>
                                  <VBox.margin>
                                     <Insets top="30.0" />

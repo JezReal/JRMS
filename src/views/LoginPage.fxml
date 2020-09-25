@@ -65,7 +65,7 @@
             </HBox>
             <HBox prefHeight="27.0" prefWidth="262.0" spacing="20.0">
                <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" style="-fx-background-color: #03a9f4; -fx-text-fill: white;" text="Login" />
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" style="-fx-text-fill: white;" styleClass="mainButtons" stylesheets="@../stylesheets/home.css" text="Login" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />

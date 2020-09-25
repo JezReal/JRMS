@@ -176,19 +176,22 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="1249.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="1238.0">
                      <children>
-                        <Button fx:id="cancelJobButton" mnemonicParsing="false" onAction="#cancelJobButtonClicked" text="Cancel Job">
+                        <Button fx:id="cancelJobButton" mnemonicParsing="false" onAction="#cancelJobButtonClicked" style="-fx-text-fill: white;" styleClass="mainButtons" stylesheets="@../stylesheets/home.css" text="Cancel Job">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="markButton" mnemonicParsing="false" onAction="#markButtonClicked" text="Mark as done">
+                        <Button fx:id="markButton" mnemonicParsing="false" onAction="#markButtonClicked" style="-fx-text-fill: white;" styleClass="mainButtons" stylesheets="@../stylesheets/home.css" text="Mark as done">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </HBox>
                   <Label style="-fx-font-weight: bold;" text="JOBS FOR CLAIM">
                      <VBox.margin>
