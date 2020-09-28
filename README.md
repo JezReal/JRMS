@@ -17,3 +17,12 @@ printing companies.
 ### Setup:
 * Copy the contents of the `databaseFiles` folder in `C:\xampp\mysql\data`
 * Make sure to start mysql in your xampp control panel to be able to use the system.
+
+#### Credentials 
+* For an administrator account:
+  * `username:` admin
+  * `password:` admin
+
+* For a non-administrator account:
+  * `username:` non-admin
+  * `password:` non-admin
