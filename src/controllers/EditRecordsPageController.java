@@ -611,9 +611,10 @@ public class EditRecordsPageController implements Initializable {
 //            System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        updateUserAccountTable();
-        clearFields();
-        setDefaults();
+            updateUserAccountTable();
+            populateEmpIdChoiceBox();
+            clearFields();
+            setDefaults();
             
         }    
     }
@@ -789,6 +790,7 @@ public class EditRecordsPageController implements Initializable {
                   setDefaults();
                   updateEmloyeeRecordsTable();
                   updateProductsRecord();
+                  populateEmpIdChoiceBox();
               }
               else if(t1.equals(employeeRecordsTab)){
                   searchByCombobox.setItems(employeeRecordsFilter);
