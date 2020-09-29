@@ -258,7 +258,7 @@
          <children>
             <Label fx:id="seachByLabel" text="Search by:">
                <HBox.margin>
-                  <Insets left="220.0" />
+                  <Insets left="245.0" />
                </HBox.margin>
             </Label>
             <ComboBox fx:id="searchByCombobox" onAction="#newItemSelected" prefWidth="150.0" />
