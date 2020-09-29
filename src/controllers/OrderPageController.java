@@ -176,7 +176,17 @@ public class OrderPageController implements Initializable {
 
     @FXML
     void clearButtonClicked(ActionEvent event) {
-
+        clientFnameField.clear();
+        clientLnameField.clear();
+        contactField.clear();
+        emailAddressField.clear();
+        heightField.clear();
+        widthField.clear();
+        quantityField.clear();
+        AmountDueField.clear();
+        amountPaidField.clear();
+        changeField.clear();
+        balanceField.clear();
     }
 
     @FXML
