@@ -1,12 +1,12 @@
 
 package models;
 
-public class userAccounts {
+public class UserAccounts {
     private int usernum, empid;
     private String username, password, firstname, lastname;
     private boolean admin;
     
-    public userAccounts(int usernum,int empid, String username, String password, String firstname, String lastname, boolean admin ){
+    public UserAccounts(int usernum, int empid, String username, String password, String firstname, String lastname, boolean admin ){
         this.usernum=usernum;
         this.password=password;
         this.username=username;
@@ -16,7 +16,7 @@ public class userAccounts {
         this.admin=admin;
     }
     
-    public userAccounts(){
+    public UserAccounts(){
         this.usernum=0;
         this.password="";
         this.username="";

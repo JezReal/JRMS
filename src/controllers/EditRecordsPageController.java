@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import models.Employee_Records;
 import models.Notifications;
 import models.Products_Record;
-import models.userAccounts;
+import models.UserAccounts;
 
 import java.net.URL;
 import java.sql.*;
@@ -161,28 +161,28 @@ public class EditRecordsPageController implements Initializable {
     private ComboBox<String> searchByCombobox;
 
     @FXML
-    private TableView<userAccounts> userAccountInfoTable;
+    private TableView<UserAccounts> userAccountInfoTable;
 
     @FXML
-    private TableColumn<userAccounts, Integer> userAccountsNumberColumn;
+    private TableColumn<UserAccounts, Integer> userAccountsNumberColumn;
 
     @FXML
-    private TableColumn<userAccounts, Integer> userAccountsEmpIdColumn;
+    private TableColumn<UserAccounts, Integer> userAccountsEmpIdColumn;
 
     @FXML
-    private TableColumn<userAccounts, String> userAccountsUsernameColumn;
+    private TableColumn<UserAccounts, String> userAccountsUsernameColumn;
 
     @FXML
-    private TableColumn<userAccounts, String> userAccountsPasswordColumn;
+    private TableColumn<UserAccounts, String> userAccountsPasswordColumn;
 
     @FXML
-    private TableColumn<userAccounts, String> userAccountsFirstnameColumn;
+    private TableColumn<UserAccounts, String> userAccountsFirstnameColumn;
 
     @FXML
-    private TableColumn<userAccounts, String> userAccountsLastnameColumn;
+    private TableColumn<UserAccounts, String> userAccountsLastnameColumn;
     
     @FXML
-    private TableColumn<userAccounts, Boolean> userAccountsAdminColumn;
+    private TableColumn<UserAccounts, Boolean> userAccountsAdminColumn;
 
     @FXML
     private Tab productsRecordsTab;
@@ -273,7 +273,7 @@ public class EditRecordsPageController implements Initializable {
     @FXML
     void userAccountsEditButtonClicked(ActionEvent event) {
         int id;
-        userAccounts user;
+        UserAccounts user;
         user = userAccountInfoTable.getSelectionModel().getSelectedItem();
         id = user.getUsernum();
         
@@ -447,7 +447,7 @@ public class EditRecordsPageController implements Initializable {
     @FXML
     void userAccountsTableSelected(MouseEvent event) {
 
-        userAccounts selectedUserAccounts;
+        UserAccounts selectedUserAccounts;
         selectedUserAccounts = userAccountInfoTable.getSelectionModel().getSelectedItem();
 
         userAccountsUsernameField.setText(selectedUserAccounts.getUsername());
@@ -460,7 +460,7 @@ public class EditRecordsPageController implements Initializable {
     @FXML
     void userAccountsDeleteButtonClicked(ActionEvent event) {
         int id;
-        userAccounts deleteUser;
+        UserAccounts deleteUser;
         deleteUser = userAccountInfoTable.getSelectionModel().getSelectedItem();
 
         id = deleteUser.getUsernum();
@@ -584,7 +584,7 @@ public class EditRecordsPageController implements Initializable {
         }
         
         int value = admin ? 1 : 0;
-            userAccounts user = new userAccounts();
+            UserAccounts user = new UserAccounts();
             connection=condb.getConnection();
             ResultSet get=connection.createStatement().executeQuery("SELECT employeeID FROM employees_record WHERE CONCAT(employees_record.employeeID,'-',employees_record.empLname) = '" + userAccountSelectEmployeeComboBox.getValue()+"'");
             while(get.next()){
@@ -644,14 +644,14 @@ public class EditRecordsPageController implements Initializable {
     //Method that updates the tables from database
     public void updateUserAccountTable() {
         
-        ObservableList<userAccounts> user = FXCollections.observableArrayList();
+        ObservableList<UserAccounts> user = FXCollections.observableArrayList();
         try {
 
             connection = condb.getConnection();
             ResultSet rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID, useraccounts_records.empID,useraccounts_records.username, useraccounts_records.password, employees_record.empFname, employees_record.empLname, useraccounts_records.Admin FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE useraccounts_records.status='active'");
 
             while (rs.next()) {
-                user.add(new userAccounts(rs.getInt("userID"), rs.getInt("empID"), rs.getString("username"), rs.getString("password"), rs.getString("empFname"), rs.getString("empLname"), rs.getBoolean("Admin")));
+                user.add(new UserAccounts(rs.getInt("userID"), rs.getInt("empID"), rs.getString("username"), rs.getString("password"), rs.getString("empFname"), rs.getString("empLname"), rs.getBoolean("Admin")));
             }
             connection.close();
         } catch (Exception e) {
@@ -659,13 +659,13 @@ public class EditRecordsPageController implements Initializable {
             e.printStackTrace();
         }
 
-        userAccountsNumberColumn.setCellValueFactory(new PropertyValueFactory<userAccounts, Integer>("usernum"));
-        userAccountsEmpIdColumn.setCellValueFactory(new PropertyValueFactory<userAccounts, Integer>("empid"));
-        userAccountsFirstnameColumn.setCellValueFactory(new PropertyValueFactory<userAccounts, String>("firstname"));
-        userAccountsLastnameColumn.setCellValueFactory(new PropertyValueFactory<userAccounts, String>("lastname"));
-        userAccountsUsernameColumn.setCellValueFactory(new PropertyValueFactory<userAccounts, String>("username"));
-        userAccountsPasswordColumn.setCellValueFactory(new PropertyValueFactory<userAccounts, String>("password"));
-        userAccountsAdminColumn.setCellValueFactory(new PropertyValueFactory<userAccounts, Boolean>("admin"));
+        userAccountsNumberColumn.setCellValueFactory(new PropertyValueFactory<UserAccounts, Integer>("usernum"));
+        userAccountsEmpIdColumn.setCellValueFactory(new PropertyValueFactory<UserAccounts, Integer>("empid"));
+        userAccountsFirstnameColumn.setCellValueFactory(new PropertyValueFactory<UserAccounts, String>("firstname"));
+        userAccountsLastnameColumn.setCellValueFactory(new PropertyValueFactory<UserAccounts, String>("lastname"));
+        userAccountsUsernameColumn.setCellValueFactory(new PropertyValueFactory<UserAccounts, String>("username"));
+        userAccountsPasswordColumn.setCellValueFactory(new PropertyValueFactory<UserAccounts, String>("password"));
+        userAccountsAdminColumn.setCellValueFactory(new PropertyValueFactory<UserAccounts, Boolean>("admin"));
         userAccountInfoTable.setItems(user);
 
     }
@@ -874,7 +874,7 @@ public class EditRecordsPageController implements Initializable {
         int index = 0;
         ObservableList<Employee_Records> employee = FXCollections.observableArrayList();
         ObservableList<Products_Record> product = FXCollections.observableArrayList();
-        ObservableList<userAccounts> user = FXCollections.observableArrayList();
+        ObservableList<UserAccounts> user = FXCollections.observableArrayList();
 
         connection = condb.getConnection();
 
@@ -940,7 +940,7 @@ public class EditRecordsPageController implements Initializable {
             ResultSet rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID, useraccounts_records.empID,useraccounts_records.username, useraccounts_records.password, useraccounts_records.Admin, employees_record.empFname, employees_record.empLname FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE "+filter+" LIKE '%"+searchFor+"%'");
 
             while (rs.next()) {
-                user.add(new userAccounts(rs.getInt("userID"), rs.getInt("empID"), rs.getString("username"), rs.getString("password"), rs.getString("empFname"), rs.getString("empLname"), rs.getBoolean("Admin")));
+                user.add(new UserAccounts(rs.getInt("userID"), rs.getInt("empID"), rs.getString("username"), rs.getString("password"), rs.getString("empFname"), rs.getString("empLname"), rs.getBoolean("Admin")));
             }
             
             userAccountsNumberColumn.setCellValueFactory(new PropertyValueFactory<>("usernum"));
