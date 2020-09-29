@@ -37,7 +37,7 @@ public class ClientName {
 
         int counter = 0;
 
-        for (String s: names) {
+        for (String s : names) {
             if (s.equals(name)) {
                 counter++;
             }

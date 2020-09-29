@@ -11,7 +11,7 @@ public class Order_Summary {
     private DoubleProperty amountDue, amountPaid, balance;
     private ObjectProperty<LocalDate> orderDate, claimDate;
 
-    public Order_Summary(int jobID,  String firstname, String lastname, String phone, String email, String productName, String size, int quantity, LocalDate orderDate, LocalDate claimDate, double amountDue, double amountPaid, double balance, String empLname, String username, String status) {
+    public Order_Summary(int jobID, String firstname, String lastname, String phone, String email, String productName, String size, int quantity, LocalDate orderDate, LocalDate claimDate, double amountDue, double amountPaid, double balance, String empLname, String username, String status) {
 
         this.jobID = new SimpleIntegerProperty(jobID);
         this.firstname = new SimpleStringProperty(firstname);
@@ -30,8 +30,8 @@ public class Order_Summary {
         this.username = new SimpleStringProperty(username);
         this.status = new SimpleStringProperty(status);
     }
-    
-    public Order_Summary(){
+
+    public Order_Summary() {
         this.claimDate = claimDate;
     }
 

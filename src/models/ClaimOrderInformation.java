@@ -24,13 +24,13 @@ public class ClaimOrderInformation {
         this.amountPaid = amountPaid;
         this.balance = balance;
         this.empFName = empFName;
-        this.userName=username;
+        this.userName = username;
     }
 
     public String getUserName() {
         return userName;
     }
-    
+
     public int getJobID() {
         return jobID;
     }

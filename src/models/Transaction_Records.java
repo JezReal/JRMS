@@ -2,14 +2,13 @@ package models;
 
 import java.time.LocalDate;
 
-
 public class Transaction_Records {
     private LocalDate dateOrdered, dateClaim;
     private int jobID, productID, customerID, empID, userID, quantity;
     private double amountPaid, balance, amountDue;
-    private String size,status;
+    private String size, status;
 
-    public Transaction_Records( int jobID, int productID, int customerID, int empID, int userID, int quantity, LocalDate dateOrdered, LocalDate dateClaim, double amountPaid, double balance, double amountDue, String size, String status) {
+    public Transaction_Records(int jobID, int productID, int customerID, int empID, int userID, int quantity, LocalDate dateOrdered, LocalDate dateClaim, double amountPaid, double balance, double amountDue, String size, String status) {
         this.dateOrdered = dateOrdered;
         this.dateClaim = dateClaim;
         this.jobID = jobID;
@@ -24,8 +23,8 @@ public class Transaction_Records {
         this.size = size;
         this.status = status;
     }
-    
-    public Transaction_Records(){
+
+    public Transaction_Records() {
         this.status = status;
     }
 
@@ -132,5 +131,5 @@ public class Transaction_Records {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }

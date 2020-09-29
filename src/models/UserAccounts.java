@@ -5,25 +5,25 @@ public class UserAccounts {
     private int usernum, empid;
     private String username, password, firstname, lastname;
     private boolean admin;
-    
-    public UserAccounts(int usernum, int empid, String username, String password, String firstname, String lastname, boolean admin ){
-        this.usernum=usernum;
-        this.password=password;
-        this.username=username;
-        this.firstname=firstname;
-        this.lastname=lastname;
-        this.empid=empid;
-        this.admin=admin;
+
+    public UserAccounts(int usernum, int empid, String username, String password, String firstname, String lastname, boolean admin) {
+        this.usernum = usernum;
+        this.password = password;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.empid = empid;
+        this.admin = admin;
     }
-    
-    public UserAccounts(){
-        this.usernum=0;
-        this.password="";
-        this.username="";
-        this.firstname="";
-        this.lastname="";
-        this.empid=0;
-        this.admin=false;
+
+    public UserAccounts() {
+        this.usernum = 0;
+        this.password = "";
+        this.username = "";
+        this.firstname = "";
+        this.lastname = "";
+        this.empid = 0;
+        this.admin = false;
     }
 
     public boolean isAdmin() {
@@ -49,12 +49,12 @@ public class UserAccounts {
     public void setUsernum(int usernum) {
         this.usernum = usernum;
     }
-    
-    public String getUsername(){
+
+    public String getUsername() {
         return username;
     }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
 
@@ -81,5 +81,5 @@ public class UserAccounts {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
 }

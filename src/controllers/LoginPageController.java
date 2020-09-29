@@ -16,7 +16,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import models.Notifications;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -90,9 +89,6 @@ public class LoginPageController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        
-
     }
 
     @FXML
@@ -158,19 +154,16 @@ public class LoginPageController implements Initializable {
         Formatter fm = new Formatter(sb);
         fm.format("SELECT CONCAT(employees_record.empFname,' ',employees_record.empLname) AS fullname FROM employees_record JOIN useraccounts_records ON employees_record.employeeID=useraccounts_records.empID WHERE useraccounts_records.username='%s'AND useraccounts_records.password='%s'", username, password);
         try {
-
             resultSet = connectionClass.select(sb.toString());
 
             while (resultSet.next()) {
                 userFullname=resultSet.getString("fullname");
-
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
         return  userFullname;
-        
     }
     
     @Override
@@ -182,7 +175,6 @@ public class LoginPageController implements Initializable {
              Notifications connectionUnsuccessful = new Notifications("Connection Error", "The application cannot connect to the database");
              connectionUnsuccessful.showError();     
         }
-        
     }
     
     public int getUserId(){
@@ -200,7 +192,6 @@ public class LoginPageController implements Initializable {
             ex.printStackTrace();
         }
 
-        
         return userID;
     }
 }

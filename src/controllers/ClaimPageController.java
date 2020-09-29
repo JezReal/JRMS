@@ -62,7 +62,7 @@ public class ClaimPageController implements Initializable {
 
     ConnectionClass conn;
     double remainingBalance;
-    ResultSet rs,rs2;
+    ResultSet rs, rs2;
     HomeController homeController;
 
     private int selectedJobID;
@@ -160,8 +160,8 @@ public class ClaimPageController implements Initializable {
         ClientName.clearNames();
 
         try {
-            Connection connection=conn.getConnection();
-            rs=connection.createStatement().executeQuery("SELECT transaction_records.jobID, CONCAT(customer_records.lastname, ', ', customer_records.firstname ) AS name FROM customer_records JOIN transaction_records ON customer_records.customerID =transaction_records.customerID WHERE transaction_records.status='for claiming'");
+            Connection connection = conn.getConnection();
+            rs = connection.createStatement().executeQuery("SELECT transaction_records.jobID, CONCAT(customer_records.lastname, ', ', customer_records.firstname ) AS name FROM customer_records JOIN transaction_records ON customer_records.customerID =transaction_records.customerID WHERE transaction_records.status='for claiming'");
 
             while (rs.next()) {
                 clientName.add(new ClientName(rs.getInt("jobID"), rs.getString("name")));
@@ -170,7 +170,7 @@ public class ClaimPageController implements Initializable {
             ex.printStackTrace();
         }
 
-        for (int i=0, j=1; i<clientName.size(); i++) {
+        for (int i = 0, j = 1; i < clientName.size(); i++) {
             if (isDuplicate(clientName.get(i).getName())) {
                 clientNameObservable.add(clientName.get(i).getName().concat("(" + j + ")"));
                 j++;
@@ -184,7 +184,6 @@ public class ClaimPageController implements Initializable {
         if (clientNameObservable.size() > 0) {
             loadClaimOrderInfo(0);
         }
-
     }
 
     private void fetchRecord() {
@@ -201,7 +200,7 @@ public class ClaimPageController implements Initializable {
             rs = conn.select(stringBuilder.toString());
 
             while (rs.next()) {
-                claimOrderInformationArrayList.add(new ClaimOrderInformation(rs.getInt("jobID"), rs.getDate("orderDate").toLocalDate(), rs.getString("productName"), rs.getString("size"), rs.getString("quantity"), rs.getString("amountDue"), rs.getDouble("amountPaid"), rs.getDouble("balance"),rs.getString("empFname"),rs.getString("username")));
+                claimOrderInformationArrayList.add(new ClaimOrderInformation(rs.getInt("jobID"), rs.getDate("orderDate").toLocalDate(), rs.getString("productName"), rs.getString("size"), rs.getString("quantity"), rs.getString("amountDue"), rs.getDouble("amountPaid"), rs.getDouble("balance"), rs.getString("empFname"), rs.getString("username")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -220,7 +219,7 @@ public class ClaimPageController implements Initializable {
         orderInformationArea.appendText("\nAssigned:\t\t\t\t" + claimOrderInformationArrayList.get(index).getEmpFName());
         orderInformationArea.appendText("\nReceived by:\t\t\t" + claimOrderInformationArrayList.get(index).getUserName());
 
-       remainingBalanceField.setText(claimOrderInformationArrayList.get(index).getBalance().toString());
+        remainingBalanceField.setText(claimOrderInformationArrayList.get(index).getBalance().toString());
     }
 
     private void clearFields() {
@@ -257,7 +256,7 @@ public class ClaimPageController implements Initializable {
 
 //      use trim method to remove leading whitespace from the split method earlier
         formatter.format("SELECT transaction_records.amountPaid FROM transaction_records JOIN customer_records ON transaction_records.customerID = customer_records.customerID WHERE customer_records.lastname='%s' AND customer_records.firstname='%s' AND transaction_records.status='for claiming' AND transaction_records.jobID=%d", lastName[0].trim(), lastName[1].trim(), getSelectedJobID());
-        
+
         try {
             rs = conn.select(stringBuilder.toString());
 
@@ -272,7 +271,7 @@ public class ClaimPageController implements Initializable {
 
         stringBuilder = new StringBuilder();
         formatter = new Formatter(stringBuilder);
-        formatter.format("UPDATE transaction_records JOIN customer_records ON transaction_records.customerID=customer_records.customerID SET transaction_records.status='claimed', transaction_records.amountPaid=%f, transaction_records.balance = 0 WHERE customer_records.lastname='%s' AND customer_records.firstname='%s' AND transaction_records.status='for claiming' AND transaction_records.jobID=%d",totalAmountPaid, lastName[0].trim(), lastName[1].trim(), getSelectedJobID());
+        formatter.format("UPDATE transaction_records JOIN customer_records ON transaction_records.customerID=customer_records.customerID SET transaction_records.status='claimed', transaction_records.amountPaid=%f, transaction_records.balance = 0 WHERE customer_records.lastname='%s' AND customer_records.firstname='%s' AND transaction_records.status='for claiming' AND transaction_records.jobID=%d", totalAmountPaid, lastName[0].trim(), lastName[1].trim(), getSelectedJobID());
 
 
         try {
@@ -285,7 +284,7 @@ public class ClaimPageController implements Initializable {
 
         orderInformationArea.setText("Job successfully released...");
         orderInformationArea.appendText("\nTransaction saved...");
-        remainingBalance=0;
+        remainingBalance = 0;
     }
 
     public void setHomeController(HomeController controller) {
@@ -299,7 +298,4 @@ public class ClaimPageController implements Initializable {
     private int getSelectedJobID() {
         return selectedJobID;
     }
-    
-    
-
 }

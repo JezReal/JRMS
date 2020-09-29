@@ -21,7 +21,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.ResourceBundle;
-import models.Notifications;
 
 public class OrderPageController implements Initializable {
 
@@ -126,7 +125,7 @@ public class OrderPageController implements Initializable {
 
     @FXML
     private TextArea summaryTextArea;
-    
+
     private int id;
 
     HomeController homeController;
@@ -141,44 +140,38 @@ public class OrderPageController implements Initializable {
     @FXML
     void calculatePriceClicked(ActionEvent event) {
         calculatePrice();
-
     }
 
     @FXML
     void calculateChangeAndBalanceClicked(ActionEvent event) {
         calculateBalance();
-
     }
 
     @FXML
     void viewSummaryButtonClicked(ActionEvent event) {
-        
-        if(incompleteFields()){
+
+        if (incompleteFields()) {
             getSelected();
 
-        summaryTextArea.setText("MY PRINTING COMPANY");
-        summaryTextArea.appendText("\nYour number 1 printing solution");
-        summaryTextArea.appendText("\nNo.8, Corpuz St., West Tapinac, Olongapo City\n");
-        summaryTextArea.appendText("\nDate of order:\t\t\t"+dateOrderPicker.getValue().toString());
-        summaryTextArea.appendText("\nSold to:\t\t\t\t"+clientFnameField.getText()+" "+clientLnameField.getText());
-        summaryTextArea.appendText("\nContact:\t\t\t\t"+contactField.getText());
-        summaryTextArea.appendText("\nDate of claim:\t\t\t"+dateOfClaimPicker.getValue().toString());
-        summaryTextArea.appendText("\nProduct:\t\t\t\t"+chooseProductComboBox.getValue());
-        summaryTextArea.appendText("\nQuantity:\t\t\t\t"+quantityField.getText()+"pc/s.");
-        summaryTextArea.appendText("\nSize:\t\t\t\t\t"+heightField.getText()+"ft. "+"x "+widthField.getText()+"ft.");
-        summaryTextArea.appendText("\nAmount Due\t\t\t"+"₱"+AmountDueField.getText());
-        summaryTextArea.appendText("\nAmount Paid\t\t\t"+"₱"+amountPaidField.getText());
-        summaryTextArea.appendText("\nBalance:\t\t\t\t" +"₱"+balanceField.getText());
-        summaryTextArea.appendText("\nAssigned:\t\t\t\t" +assignToComboBox.getValue());
-            
-        }
-        
-        else{
-            Notifications error=new Notifications("Incomplete Fields!", "Please complete all the fields");
+            summaryTextArea.setText("MY PRINTING COMPANY");
+            summaryTextArea.appendText("\nYour number 1 printing solution");
+            summaryTextArea.appendText("\nNo.8, Corpuz St., West Tapinac, Olongapo City\n");
+            summaryTextArea.appendText("\nDate of order:\t\t\t" + dateOrderPicker.getValue().toString());
+            summaryTextArea.appendText("\nSold to:\t\t\t\t" + clientFnameField.getText() + " " + clientLnameField.getText());
+            summaryTextArea.appendText("\nContact:\t\t\t\t" + contactField.getText());
+            summaryTextArea.appendText("\nDate of claim:\t\t\t" + dateOfClaimPicker.getValue().toString());
+            summaryTextArea.appendText("\nProduct:\t\t\t\t" + chooseProductComboBox.getValue());
+            summaryTextArea.appendText("\nQuantity:\t\t\t\t" + quantityField.getText() + "pc/s.");
+            summaryTextArea.appendText("\nSize:\t\t\t\t\t" + heightField.getText() + "ft. " + "x " + widthField.getText() + "ft.");
+            summaryTextArea.appendText("\nAmount Due\t\t\t" + "₱" + AmountDueField.getText());
+            summaryTextArea.appendText("\nAmount Paid\t\t\t" + "₱" + amountPaidField.getText());
+            summaryTextArea.appendText("\nBalance:\t\t\t\t" + "₱" + balanceField.getText());
+            summaryTextArea.appendText("\nAssigned:\t\t\t\t" + assignToComboBox.getValue());
+
+        } else {
+            Notifications error = new Notifications("Incomplete Fields!", "Please complete all the fields");
             error.showError();
         }
-
-        
     }
 
     @FXML
@@ -188,21 +181,19 @@ public class OrderPageController implements Initializable {
 
     @FXML
     void saveTransactionButtonClicked(ActionEvent event) {
-        
-        if(incompleteFields()){
+
+        if (incompleteFields()) {
             saveTransaction();
             transactionSuccessful();
-        }
-        else{
-            Notifications error=new Notifications("Incomplete Fields!!", "Please complete all the fields");
+        } else {
+            Notifications error = new Notifications("Incomplete Fields!!", "Please complete all the fields");
             error.showError();
-        }  
-        
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         try {
             condb = new ConnectionClass();
         } catch (SQLException e) {
@@ -214,20 +205,19 @@ public class OrderPageController implements Initializable {
         addItems();
         pending = FXCollections.observableArrayList();
         forClaim = FXCollections.observableArrayList();
-
     }
 
     public void addItems() {
 
 //populate the combobox for products and employee
-        ObservableList<String> product=FXCollections.observableArrayList();
-        ObservableList<String> employee=FXCollections.observableArrayList();
+        ObservableList<String> product = FXCollections.observableArrayList();
+        ObservableList<String> employee = FXCollections.observableArrayList();
 
         try {
             resultSet = condb.select("SELECT productName FROM product_records WHERE status='available'");
             resultSet2 = condb.select("SELECT CONCAT(employees_record.empLname,', ', employees_record.empFname) as fullName FROM employees_record WHERE employees_record.status='employed'");
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 product.add(resultSet.getString("productName"));
                 chooseProductComboBox.setItems(product);
             }
@@ -247,69 +237,63 @@ public class OrderPageController implements Initializable {
         double height, width, price, product = 0, change;
         int quantity;
         String totalPrice;
-        height=Double.parseDouble(heightField.getText());
-        width=Double.parseDouble(widthField.getText());
-        quantity=Integer.parseInt(quantityField.getText());
+        height = Double.parseDouble(heightField.getText());
+        width = Double.parseDouble(widthField.getText());
+        quantity = Integer.parseInt(quantityField.getText());
 
-//        TODO: fix this query
+        try {
+            Connection conn = condb.getConnection();
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM product_records WHERE productName= '" + chooseProductComboBox.getValue() + "'");
 
-        try{
-            Connection conn=condb.getConnection();
-            ResultSet rs=conn.createStatement().executeQuery("SELECT * FROM product_records WHERE productName= '"+chooseProductComboBox.getValue()+"'");
-
-            while(rs.next()){
-                product=rs.getDouble("productPrice");
+            while (rs.next()) {
+                product = rs.getDouble("productPrice");
 
             }
 
-                price=quantity*(height*width)*product;
-                totalPrice=String.valueOf(price);
-                AmountDueField.setText(totalPrice);
+            price = quantity * (height * width) * product;
+            totalPrice = String.valueOf(price);
+            AmountDueField.setText(totalPrice);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void calculateBalance() {
-        double change,balance, amountPaid, price;
+        double change, balance, amountPaid, price;
         String balanceComputed, changeComputed;
 
-        amountPaid=Double.parseDouble(amountPaidField.getText());
-        price=Double.parseDouble(AmountDueField.getText());
+        amountPaid = Double.parseDouble(amountPaidField.getText());
+        price = Double.parseDouble(AmountDueField.getText());
 
-        if (amountPaid<price){
-            change=0;
-        } else{
-           change = amountPaid-price;
+        if (amountPaid < price) {
+            change = 0;
+        } else {
+            change = amountPaid - price;
         }
 
-        if (amountPaid>price) {
-            balance=0;
+        if (amountPaid > price) {
+            balance = 0;
 
         } else {
-            balance=price-amountPaid;
+            balance = price - amountPaid;
         }
 
-        balanceComputed=String.valueOf(balance);
-        changeComputed=String.valueOf(change);
+        balanceComputed = String.valueOf(balance);
+        changeComputed = String.valueOf(change);
 
         changeField.setText(changeComputed);
         balanceField.setText(balanceComputed);
     }
 
-    public  void saveTransaction() {
-        
-            inserCustomer();
-            insertTrnsaction();
-  
+    public void saveTransaction() {
+        inserCustomer();
+        insertTrnsaction();
     }
 
-    public void getSelected(){
+    public void getSelected() {
         String selected;
-        selected=chooseProductComboBox.getValue();
+        selected = chooseProductComboBox.getValue();
     }
 
     private void inserCustomer() {
@@ -319,34 +303,31 @@ public class OrderPageController implements Initializable {
         String phoneNumber = contactField.getText();
         String email = emailAddressField.getText();
 
-        try{
-
-//            TODO: change this query
-
+        try {
             StringBuilder stringBuilder = new StringBuilder();
             Formatter formatter = new Formatter(stringBuilder);
             formatter.format("INSERT INTO customer_records VALUES(0, '%s', '%s', '%s', '%s')", lastName, firstName, phoneNumber, email);
             condb.insert(stringBuilder.toString());
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     private void insertTrnsaction() {
-        Transaction_Records transaction=new Transaction_Records();
-//TODO: change this query. unnecessary objects
+        Transaction_Records transaction = new Transaction_Records();
+
         try {
-            Connection connect=condb.getConnection();
-            ResultSet rs1 = connect.createStatement().executeQuery("SELECT productID FROM product_records WHERE  productName='"+chooseProductComboBox.getValue()+"'");
-            ResultSet rs2 = connect.createStatement().executeQuery("SELECT employeeID FROM employees_record WHERE CONCAT(employees_record.empLname,', ',employees_record.empFname) ='"+assignToComboBox.getValue()+"'");
-            ResultSet rs3 = connect.createStatement().executeQuery("SELECT customerID FROM `customer_records` WHERE lastname='"+clientLnameField.getText()+"' and firstname='"+clientFnameField.getText()+"'");
+            Connection connect = condb.getConnection();
+            ResultSet rs1 = connect.createStatement().executeQuery("SELECT productID FROM product_records WHERE  productName='" + chooseProductComboBox.getValue() + "'");
+            ResultSet rs2 = connect.createStatement().executeQuery("SELECT employeeID FROM employees_record WHERE CONCAT(employees_record.empLname,', ',employees_record.empFname) ='" + assignToComboBox.getValue() + "'");
+            ResultSet rs3 = connect.createStatement().executeQuery("SELECT customerID FROM `customer_records` WHERE lastname='" + clientLnameField.getText() + "' and firstname='" + clientFnameField.getText() + "'");
             while (rs1.next()) {
                 transaction.setProductID(rs1.getInt("productID"));
             }
-            while(rs2.next()){
+            while (rs2.next()) {
                 transaction.setEmpID(rs2.getInt("employeeID"));
             }
-            while(rs3.next()){
+            while (rs3.next()) {
                 transaction.setCustomerID(rs3.getInt("customerID"));
             }
             connect.close();
@@ -356,7 +337,7 @@ public class OrderPageController implements Initializable {
 
         transaction.setJobID(0);
         transaction.setUserID(this.getActiveUserID());
-        transaction.setSize(heightField.getText()+"X"+widthField.getText());
+        transaction.setSize(heightField.getText() + "X" + widthField.getText());
         transaction.setQuantity(Integer.parseInt(quantityField.getText()));
         transaction.setDateOrdered(dateOrderPicker.getValue());
         transaction.setDateClaim(dateOfClaimPicker.getValue());
@@ -365,12 +346,12 @@ public class OrderPageController implements Initializable {
         transaction.setBalance(Double.parseDouble(balanceField.getText()));
         transaction.setStatus("pending");
 
-        try{
-            Connection connection=condb.getConnection();
-            String insertTransaction="INSERT INTO transaction_records VALUES ('"+transaction.getJobID()+"','"+transaction.getProductID()+"','"+transaction.getCustomerID()+"','"+transaction.getEmpID()+"','"+transaction.getUserID()+"','"+transaction.getSize()+"','"+transaction.getQuantity()+"','"+transaction.getDateOrdered()+"','"+transaction.getDateClaim()+"','"+transaction.getAmountDue()+"','"+transaction.getAmountPaid()+"','"+transaction.getBalance()+"','"+transaction.getStatus()+"')";
-            Statement statement=connection.createStatement();
+        try {
+            Connection connection = condb.getConnection();
+            String insertTransaction = "INSERT INTO transaction_records VALUES ('" + transaction.getJobID() + "','" + transaction.getProductID() + "','" + transaction.getCustomerID() + "','" + transaction.getEmpID() + "','" + transaction.getUserID() + "','" + transaction.getSize() + "','" + transaction.getQuantity() + "','" + transaction.getDateOrdered() + "','" + transaction.getDateClaim() + "','" + transaction.getAmountDue() + "','" + transaction.getAmountPaid() + "','" + transaction.getBalance() + "','" + transaction.getStatus() + "')";
+            Statement statement = connection.createStatement();
             statement.executeUpdate(insertTransaction);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -397,32 +378,32 @@ public class OrderPageController implements Initializable {
     public void setHomeController(HomeController controller) {
         homeController = controller;
     }
-    
-    public void setActiveUserID(String userName){  
-        
+
+    public void setActiveUserID(String userName) {
+
         ResultSet rs;
         try {
-            Connection connection=condb.getConnection();
-            rs=connection.createStatement().executeQuery("SELECT useraccounts_records.userID FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE CONCAT(employees_record.empFname,' ',employees_record.empLname)='"+userName+"'");
+            Connection connection = condb.getConnection();
+            rs = connection.createStatement().executeQuery("SELECT useraccounts_records.userID FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE CONCAT(employees_record.empFname,' ',employees_record.empLname)='" + userName + "'");
 
-            while(rs.next()){
-                id=rs.getInt("userID");
+            while (rs.next()) {
+                id = rs.getInt("userID");
             }
             connection.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
-    public int getActiveUserID(){
+
+    public int getActiveUserID() {
         return id;
     }
-    
-    private boolean incompleteFields(){
-        
+
+    private boolean incompleteFields() {
+
         boolean valid = false;
-        
-        ArrayList<TextField> fields=new ArrayList<>();
+
+        ArrayList<TextField> fields = new ArrayList<>();
         fields.add(clientFnameField);
         fields.add(clientLnameField);
         fields.add(contactField);
@@ -430,16 +411,15 @@ public class OrderPageController implements Initializable {
         fields.add(heightField);
         fields.add(widthField);
         fields.add(amountPaidField);
-        
-        for(TextField field: fields){
-            if(field.getText().isEmpty()){
-                valid=false;
+
+        for (TextField field : fields) {
+            if (field.getText().isEmpty()) {
+                valid = false;
                 break;
+            } else {
+                valid = true;
             }
-            else{
-                valid=true;
-            }
-        } 
+        }
         return valid;
     }
 }

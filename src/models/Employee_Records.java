@@ -2,6 +2,7 @@
 package models;
 
 public class Employee_Records {
+
     private int empNum;
     private String empLname, empFname, empMname, empMobile, empEmail;
 
@@ -13,7 +14,8 @@ public class Employee_Records {
         this.empMname = empMname;
         this.empEmail = empEmail;
     }
-        public Employee_Records() {
+
+    public Employee_Records() {
         this.empNum = 0;
         this.empLname = "";
         this.empFname = "";
@@ -21,7 +23,7 @@ public class Employee_Records {
         this.empMobile = "";
         this.empEmail = "";
     }
-    
+
 
     public int getEmpNum() {
         return empNum;
@@ -70,5 +72,4 @@ public class Employee_Records {
     public void setEmpEmail(String empEmail) {
         this.empEmail = empEmail;
     }
-    
 }

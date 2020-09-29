@@ -4,19 +4,20 @@ package connection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Order_Summary;
+
 import java.sql.*;
 
 
 public class ConnectionClass {
-    
+
     private Connection connection;
     private String username;
     private String password;
 
     public Connection getConnection() throws SQLException, ClassNotFoundException {
-    
+
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection( "jdbc:mysql://localhost:3306/final_project?useTimezone=true&serverTimezone=UTC", "root" , "");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/final_project?useTimezone=true&serverTimezone=UTC", "root", "");
         return connection;
     }
 
@@ -71,5 +72,5 @@ public class ConnectionClass {
     public void close() throws SQLException {
         connection.close();
     }
-    
+
 }

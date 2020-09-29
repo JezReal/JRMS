@@ -17,7 +17,7 @@ public class MainApp extends Application {
 
         try {
             ConnectionClass connectionClass = new ConnectionClass();
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             isConnected = false;
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -39,7 +39,7 @@ public class MainApp extends Application {
             return;
         }
     }
-   
+
     public static void main(String[] args) {
         launch(args);
     }

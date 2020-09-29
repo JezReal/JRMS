@@ -252,7 +252,6 @@ public class HomeController implements Initializable {
         window.setResizable(false);
         window.setScene(scene2);
         window.showAndWait();
-
     }
 
     @FXML
@@ -388,7 +387,7 @@ public class HomeController implements Initializable {
 
         try {
             Connection conb = conn.getConnection();
-            rs3 = conb.createStatement().executeQuery("SELECT useraccounts_records.Admin FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE CONCAT(employees_record.empFname,' ',employees_record.empLname)='" + fullname + "'AND userID='"+getActiveUserId()+"'");
+            rs3 = conb.createStatement().executeQuery("SELECT useraccounts_records.Admin FROM useraccounts_records JOIN employees_record ON useraccounts_records.empID=employees_record.employeeID WHERE CONCAT(employees_record.empFname,' ',employees_record.empLname)='" + fullname + "'AND userID='" + getActiveUserId() + "'");
             while (rs3.next()) {
                 admin = rs3.getBoolean("Admin");
             }
@@ -402,14 +401,12 @@ public class HomeController implements Initializable {
     public void setRecordController(EditRecordsPageController controller) {
         recordsController = controller;
     }
-    
-    public void setActiveUserID(int userID){
-        this.userID=userID;
-    }
-    
-    public int getActiveUserId(){
-        return userID;
+
+    public void setActiveUserID(int userID) {
+        this.userID = userID;
     }
 
-    
+    public int getActiveUserId() {
+        return userID;
+    }
 }

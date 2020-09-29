@@ -51,6 +51,4 @@ public class Notifications {
         alert.setContentText(this.getMessage());
         alert.show();
     }
-    
-    
 }
